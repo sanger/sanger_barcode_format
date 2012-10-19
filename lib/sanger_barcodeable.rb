@@ -160,11 +160,7 @@ module Barcode
     end
 
     def calculate_machine_barcode
-      if !valid?
-        raise InvalidBarcode, "The human readable barcode was invalid, perhaps it was mistyped?"
-      else
-        calculate_barcode
-      end
+      calculate_barcode
     end
 
     def calculate_human_barcode
@@ -192,6 +188,14 @@ module Barcode
 
     def initialize(human_barcode)
       @human_barcode = human_barcode
+    end
+
+    def calculate_machine_barcode
+      if !valid?
+        raise InvalidBarcode, "The human readable barcode was invalid, perhaps it was mistyped?"
+      else
+        super
+      end
     end
 
     def machine_barcode
@@ -230,7 +234,7 @@ module Barcode
     end
 
     def initialize(machine_barcode)
-      @machine_barcode = machine_barcode
+      @machine_barcode = machine_barcode.to_i
     end
 
     def valid?
