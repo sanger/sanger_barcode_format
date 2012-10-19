@@ -1,11 +1,20 @@
-Gem::Specification.new do |s|
-  s.name        = 'sanger_barcodeable'
-  s.version     = '0.0.0'
-  s.date        = '2012-09-26'
-  s.summary     = "Sanger Barcodeable"
-  s.description = "Holds the sanger barcode model"
-  s.authors     = ["James Glover"]
-  s.email       = 'sequencescape@sanger.ac.uk'
-  s.files       = `git ls-files`.split("\n")
-  s.homepage    = 'http://www.sanger.ac.uk'
+# -*- encoding: utf-8 -*-
+require File.expand_path('../lib/sanger_barcodeable/version', __FILE__)
+
+Gem::Specification.new do |gem|
+  gem.authors       = ["James Glover"]
+  gem.email         = ["jg16@sanger.ac.uk"]
+  gem.description   = %q{Holds the sanger barcode model}
+  gem.summary       = %q{Sanger Barcodeable}
+  gem.homepage      = "http://www.sanger.ac.uk"
+
+  gem.files         = `git ls-files`.split($\)
+  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.name          = "sanger_barcodeable"
+  gem.require_paths = ["lib"]
+  gem.version       = SangerBarcodeable::VERSION
+
+  gem.add_development_dependency('rake','~>0.9.2.2')
+  gem.add_development_dependency('rspec','~>2.11.0')
 end

@@ -1,4 +1,4 @@
-# A sample Gemfile
-source "https://rubygems.org"
+source 'http://rubygems.org'
 
-# gem "rails"
+# Specify your gem's dependencies in sanger_barcodeable.gemspec
+gemspec
