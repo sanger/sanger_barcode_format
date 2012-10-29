@@ -1,6 +1,5 @@
 #require "sanger_barcodeable/version"
 
-# Ugh, we're a class.
 module Barcode
 
   class HumanPrefix
@@ -130,6 +129,8 @@ module Barcode
         @prefix ||= MachinePrefix.new($1)
         @number ||= $2.to_i
         @checksum ||= MachineChecksum.new($3.to_i)
+      else
+        raise InvalidBarcode, "The barcode #{code} is not in the expected format."
       end
     end
 
@@ -282,11 +283,21 @@ module Barcode
   end
 
   def self.number_to_human(machine_barcode)
-    MachineBarcode.new(machine_barcode).number.to_s
+    begin
+      MachineBarcode.new(machine_barcode).number.to_s
+    rescue InvalidBarcode
+      # Catching exceptions to preseve old behaviour
+      nil
+    end
   end
 
   def self.prefix_from_barcode(machine_barcode)
-    MachineBarcode.new(machine_barcode).prefix.human
+    begin
+      MachineBarcode.new(machine_barcode).prefix.human
+    rescue InvalidBarcode
+      # Catching exceptions to preseve old behaviour
+      nil
+    end
   end
 
   def self.prefix_to_human(prefix)
@@ -298,7 +309,12 @@ module Barcode
   end
 
   def self.barcode_to_human(code)
-    MachineBarcode.new(code).human_barcode
+    begin
+      MachineBarcode.new(code).human_barcode
+    rescue InvalidBarcode
+      # Catching exceptions to preseve old behaviour
+      nil
+    end
   end
 
   def self.check_EAN(code)
