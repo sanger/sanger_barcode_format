@@ -30,7 +30,7 @@ shared_examples_for "a barcode" do
   end
 
   it "gets the human prefix from the ean13 barcode" do
-    Barcode.prefix_from_barcode(ean13).should eq('PR')
+    Barcode.prefix_from_barcode(ean13).should eq(human_prefix)
   end
 
   it "can convert numeric prefixes to human" do
@@ -77,11 +77,28 @@ describe Barcode do
     let (:human_full) {'PR1234K'}
     let (:short_barcode) {1234}
 
-    let (:machine_prefix) {450}
+    let (:machine_prefix) {'450'}
     let (:ean13) {4500001234757}
     let (:pre_ean13) {450000123475}
     let (:machine_checksum) {75}
     let (:print_checksum) {7}
+
+    it_behaves_like "a barcode"
+  end
+
+
+  context "with low prefix parameters" do
+
+    let (:human_prefix) {'BD'}
+    let (:human_checksum) {'P'}
+    let (:human_full) {'BD1P'}
+    let (:short_barcode) {1}
+
+    let (:machine_prefix) {'058'}
+    let (:ean13) {580000001806}
+    let (:pre_ean13) {58000000180}
+    let (:machine_checksum) {80}
+    let (:print_checksum) {8}
 
     it_behaves_like "a barcode"
   end
