@@ -2,6 +2,18 @@
 
 module Barcode
 
+  def self.from_human(human_barcode)
+    Barcode::HumanBarcode.new(human_barcode)
+  end
+
+  def self.from_machine(machine_barcode)
+    Barcode::MachineBarcode.new(machine_barcode)
+  end
+
+  def self.from_prefix_and_number(human_prefix,short_barcode)
+    Barcode::BuiltBarcode.new(human_prefix,short_barcode)
+  end
+
   class HumanPrefix
 
     attr_reader :human
@@ -269,10 +281,6 @@ module Barcode
   InvalidBarcodeOperation = Class.new(StandardError)
 
   # Compatability Methods #############################
-
-  def self.prefix_to_number(prefix)
-    HumanPrefix.new(prefix).machine_full
-  end
 
   def self.split_barcode(code)
     MachineBarcode.new(code).split_barcode

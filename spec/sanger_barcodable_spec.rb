@@ -2,9 +2,6 @@ require 'sanger_barcodeable'
 require 'spec_helper'
 
 shared_examples_for "a barcode" do
-  it "converts prefix to a number" do
-    Barcode.prefix_to_number(human_prefix).should eq(machine_prefix.to_i*1000000000)
-  end
 
   it "calculates the full barcode" do
     Barcode.calculate_barcode(human_prefix,short_barcode).should eq(ean13)
@@ -54,12 +51,12 @@ shared_examples_for "a barcode" do
   end
 
   it "can freely convert between them using the new models" do
-    Barcode::HumanBarcode.new(human_full).human_barcode.should eq(human_full)
-    Barcode::HumanBarcode.new(human_full).machine_barcode.should eq(ean13)
-    Barcode::MachineBarcode.new(ean13).human_barcode.should eq(human_full)
-    Barcode::MachineBarcode.new(ean13).machine_barcode.should eq(ean13)
-    Barcode::BuiltBarcode.new(human_prefix,short_barcode).human_barcode.should eq(human_full)
-    Barcode::BuiltBarcode.new(human_prefix,short_barcode).machine_barcode.should eq(ean13)
+    Barcode.from_human(human_full).human_barcode.should eq(human_full)
+    Barcode.from_human(human_full).machine_barcode.should eq(ean13)
+    Barcode.from_machine(ean13).human_barcode.should eq(human_full)
+    Barcode.from_machine(ean13).machine_barcode.should eq(ean13)
+    Barcode.from_prefix_and_number(human_prefix,short_barcode).human_barcode.should eq(human_full)
+    Barcode.from_prefix_and_number(human_prefix,short_barcode).machine_barcode.should eq(ean13)
   end
 
   # This method doesn't appear to be used externally, only in barcode generation
