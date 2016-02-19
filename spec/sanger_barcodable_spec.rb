@@ -3,7 +3,7 @@ require 'spec_helper'
 
 shared_examples_for "a barcode" do
   it "converts prefix to a number" do
-    Barcode.prefix_to_number(human_prefix).should eq(machine_prefix*1000000000)
+    Barcode.prefix_to_number(human_prefix).should eq(machine_prefix.to_i*1000000000)
   end
 
   it "calculates the full barcode" do
