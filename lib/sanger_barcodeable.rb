@@ -62,32 +62,31 @@ module Barcode
 
   end
 
-  class HumanChecksum
+  class Checksum
 
-    attr_reader :human
+    def self.from_human(human_checksum)
+      new(human_checksum,nil)
+    end
 
-    def initialize(human_checksum)
+    def self.from_machine(machine_checksum)
+      new(nil,machine_checksum)
+    end
+
+    def initialize(human_checksum,machine_checksum=nil)
+      raise BarcodeError, 'Must supply a human or machine checksum' unless human_checksum||machine_checksum
       @human = human_checksum
+      @machine = machine_checksum.to_i if machine_checksum
     end
 
     def machine
       @machine ||= human[0]
     end
-  end
-
-  class MachineChecksum
-
-    attr_reader :machine
-
-    def initialize(machine_checksum)
-      @machine= machine_checksum.to_i
-    end
 
     def human
       @human ||= @machine.chr
     end
-
   end
+
 
   #### Barcode Methods ###########################################################
 
@@ -138,7 +137,7 @@ module Barcode
       if /^(...)(.*)(..).$/ =~ code
         @prefix ||= Prefix.from_machine($1)
         @number ||= $2.to_i
-        @checksum ||= MachineChecksum.new($3.to_i)
+        @checksum ||= Checksum.from_machine($3.to_i)
       else
         raise InvalidBarcode, "The barcode #{code} is not in the expected format."
       end
@@ -218,7 +217,7 @@ module Barcode
       if /^(..)(.*)(.)$/ =~human_barcode
         @prefix ||= Prefix.from_human($1)
         @number ||= $2.to_i
-        @checksum ||= HumanChecksum.new($3)
+        @checksum ||= Checksum.from_human($3)
       end
     end
 
