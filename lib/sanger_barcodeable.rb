@@ -2,6 +2,10 @@
 
 module Barcode
 
+  BarcodeError= Class.new(StandardError)
+  InvalidBarcode = Class.new(BarcodeError)
+  InvalidBarcodeOperation = Class.new(BarcodeError)
+
   def self.from_human(human_barcode)
     Barcode::HumanBarcode.new(human_barcode)
   end
@@ -14,16 +18,28 @@ module Barcode
     Barcode::BuiltBarcode.new(human_prefix,short_barcode)
   end
 
-  class HumanPrefix
+  class Prefix
 
-    attr_reader :human
+    def self.from_human(human_prefix)
+      new(human_prefix,nil)
+    end
 
-    def initialize(human_prefix)
+    def self.from_machine(machine_prefix)
+      new(nil,machine_prefix)
+    end
+
+    def initialize(human_prefix,machine_prefix=nil)
+      raise BarcodeError, 'Must supply a human or machine prefix' unless human_prefix||machine_prefix
       @human = human_prefix
+      @machine = machine_prefix
     end
 
     def machine
       @machine ||= calculate_machine
+    end
+
+    def human
+      @human ||= calculate_human
     end
 
     def machine_full
@@ -31,12 +47,17 @@ module Barcode
     end
 
     private
+
     def calculate_machine
       first  = human[0]-64
       second = human[1]-64
       first  = 0 if first < 0
       second  = 0 if second < 0
       ((first * 27) + second)
+    end
+
+    def calculate_human
+      ((machine.to_i/27)+64).chr + ((machine.to_i%27)+64).chr
     end
 
   end
@@ -52,29 +73,6 @@ module Barcode
     def machine
       @machine ||= human[0]
     end
-  end
-
-  class MachinePrefix
-
-    attr_reader :machine
-
-    def initialize(machine_prefix)
-      @machine = machine_prefix
-    end
-
-    def human
-      @human ||= calculate_human_prefix
-    end
-
-    def machine_full
-      machine * 1000000000
-    end
-
-    private
-    def calculate_human_prefix
-      ((machine.to_i/27)+64).chr + ((machine.to_i%27)+64).chr
-    end
-
   end
 
   class MachineChecksum
@@ -138,7 +136,7 @@ module Barcode
       # but if this is the case the 0 is added to the wrong end
       code = code.rjust(13,'0') if code.size == 12
       if /^(...)(.*)(..).$/ =~ code
-        @prefix ||= MachinePrefix.new($1)
+        @prefix ||= Prefix.from_machine($1)
         @number ||= $2.to_i
         @checksum ||= MachineChecksum.new($3.to_i)
       else
@@ -218,7 +216,7 @@ module Barcode
     private
     def parse_barcode
       if /^(..)(.*)(.)$/ =~human_barcode
-        @prefix ||= HumanPrefix.new($1)
+        @prefix ||= Prefix.from_human($1)
         @number ||= $2.to_i
         @checksum ||= HumanChecksum.new($3)
       end
@@ -267,7 +265,7 @@ module Barcode
     end
 
     def initialize(human_prefix,number)
-      @prefix = HumanPrefix.new(human_prefix)
+      @prefix = Prefix.from_human(human_prefix)
       @number = number.to_i
     end
 
@@ -276,9 +274,6 @@ module Barcode
     end
 
   end
-
-  InvalidBarcode = Class.new(StandardError)
-  InvalidBarcodeOperation = Class.new(StandardError)
 
   # Compatability Methods #############################
 
@@ -309,7 +304,7 @@ module Barcode
   end
 
   def self.prefix_to_human(prefix)
-    MachinePrefix.new(prefix).human
+    Prefix.from_machine(prefix).human
   end
 
   def self.human_to_machine_barcode(human_barcode)
