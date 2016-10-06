@@ -4,16 +4,16 @@ module SangerBarcodeable
   module LegacyMethods
 
     def split_barcode(code)
-      MachineBarcode.new(code).split_barcode
+      SangerBarcodeable::SangerBarcode.from_machine(code).split_barcode
     end
 
     def split_human_barcode(code)
-      HumanBarcode.new(code).split_human_barcode
+      SangerBarcodeable::SangerBarcode.from_human(code).split_human_barcode
     end
 
     def number_to_human(machine_barcode)
       begin
-        MachineBarcode.new(machine_barcode).number.to_s
+        SangerBarcodeable::SangerBarcode.from_machine(machine_barcode).number.to_s
       rescue InvalidBarcode
         # Catching exceptions to preseve old behaviour
         nil
@@ -22,7 +22,7 @@ module SangerBarcodeable
 
     def prefix_from_barcode(machine_barcode)
       begin
-        MachineBarcode.new(machine_barcode).prefix.human
+        SangerBarcodeable::SangerBarcode.from_machine(machine_barcode).prefix.human
       rescue InvalidBarcode
         # Catching exceptions to preseve old behaviour
         nil
@@ -34,12 +34,16 @@ module SangerBarcodeable
     end
 
     def human_to_machine_barcode(human_barcode)
-      HumanBarcode.new(human_barcode).machine_barcode
+      bc = SangerBarcodeable::SangerBarcode.from_human(human_barcode)
+      unless bc.valid?
+        raise InvalidBarcode, "The human readable barcode was invalid, perhaps it was mistyped?"
+      end
+      bc.machine_barcode
     end
 
     def barcode_to_human(code)
       begin
-        MachineBarcode.new(code).human_barcode
+        SangerBarcodeable::SangerBarcode.from_machine(code).human_barcode
       rescue InvalidBarcode
         # Catching exceptions to preseve old behaviour
         nil
@@ -47,14 +51,14 @@ module SangerBarcodeable
     end
 
     def check_EAN(code)
-      MachineBarcode.new(code).check_EAN
+      SangerBarcodeable::SangerBarcode.from_machine(code).check_EAN
     end
 
     # Returns the Human barcode or raises an InvalidBarcode exception if there is a problem.  The barcode is
     # considered invalid if it does not translate to a Human barcode or, when the optional +prefix+ is specified,
     # its human equivalent does not match.
     def barcode_to_human!(code, prefix = nil)
-      barcode = MachineBarcode.new(code) or raise InvalidBarcode, "Barcode #{ code } appears to be invalid"
+      barcode = SangerBarcodeable::SangerBarcode.from_machine(code) or raise InvalidBarcode, "Barcode #{ code } appears to be invalid"
       unless prefix.nil? or barcode.prefix.human == prefix
         raise InvalidBarcode, "Barcode #{ code } (#{ barcode.human_barcode }) does not match prefix #{ prefix }"
       end

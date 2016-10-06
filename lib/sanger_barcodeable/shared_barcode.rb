@@ -26,7 +26,7 @@ module SangerBarcodeable
     def check_EAN
       #the EAN checksum is calculated so that the EAN of the code with checksum added is 0
       #except the new column (the checksum) start with a different weight (so the previous column keep the same weight)
-      calculate_EAN(machine_barcode, 1) == 0
+      calculate_EAN(@provided_machine_barcode, 1) == 0
     end
 
     # Legacy methods
@@ -43,11 +43,12 @@ module SangerBarcodeable
 
     def parse_barcode
       code = machine_barcode.to_s
-      # Maintaining compatability here, but this line just seems weird.
-      # I think the intent is to pad out barcodes lacking a print checksum
-      # but if this is the case the 0 is added to the wrong end
+      # Low value prefixes can get converted to a series of digits beginning with zero
+      # If converted to a number this value is lost, resulting in 12 digit barcodes.
+      # The padding restores these lost digits. While this feels off, this code ensures
+      # we can handle zero-padded and non padded barcodes.
       code = code.rjust(13,'0') if code.size == 12
-      if /^(...)(.*)(..).$/ =~ code
+      if /^(...)(.{7})(..).$/ =~ code
         @prefix ||= Prefix.from_machine($1)
         @number ||= $2.to_i
         @checksum ||= Checksum.from_machine($3.to_i)
@@ -79,7 +80,7 @@ module SangerBarcodeable
       list.bytes.each_with_index do |byte,i|
         sum += byte * (i+1)
       end
-      (sum % 23 + "A".getbyte(0)).chr
+      (sum % 23 + EAN13_ASCII_OFFSET).chr
     end
 
     def calculate_machine_barcode

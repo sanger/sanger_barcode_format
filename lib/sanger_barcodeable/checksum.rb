@@ -16,7 +16,7 @@ module SangerBarcodeable
     end
 
     def machine
-      @machine ||= human[0]
+      @machine ||= human.getbyte(0)
     end
 
     def human

@@ -52,18 +52,14 @@ shared_examples_for "a legacy barcode" do
   end
 
   it "can freely convert between them using the new models" do
-    SangerBarcodeable::Barcode.from_human(human_full).human_barcode.should eq(human_full)
-    SangerBarcodeable::Barcode.from_human(human_full).machine_barcode.should eq(ean13)
-    SangerBarcodeable::Barcode.from_machine(ean13).human_barcode.should eq(human_full)
-    SangerBarcodeable::Barcode.from_machine(ean13).machine_barcode.should eq(ean13)
-    SangerBarcodeable::Barcode.from_prefix_and_number(human_prefix,short_barcode).human_barcode.should eq(human_full)
-    SangerBarcodeable::Barcode.from_prefix_and_number(human_prefix,short_barcode).machine_barcode.should eq(ean13)
+    SangerBarcodeable::SangerBarcode.from_human(human_full).human_barcode.should eq(human_full)
+    SangerBarcodeable::SangerBarcode.from_human(human_full).machine_barcode.should eq(ean13)
+    SangerBarcodeable::SangerBarcode.from_machine(ean13).human_barcode.should eq(human_full)
+    SangerBarcodeable::SangerBarcode.from_machine(ean13).machine_barcode.should eq(ean13)
+    SangerBarcodeable::SangerBarcode.from_prefix_and_number(human_prefix,short_barcode).human_barcode.should eq(human_full)
+    SangerBarcodeable::SangerBarcode.from_prefix_and_number(human_prefix,short_barcode).machine_barcode.should eq(ean13)
   end
 
-  # This method doesn't appear to be used externally, only in barcode generation
-  # it "can find an ean13" do
-  #   SangerBarcodeable::Barcode.calculate_EAN13(pre_ean13).should eq(print_checksum)
-  # end
 end
 
 describe SangerBarcodeable::Barcode do
@@ -120,10 +116,13 @@ describe SangerBarcodeable::Barcode do
       SangerBarcodeable::Barcode.check_EAN(ean13).should eq(false)
     end
 
-    it "will raise on conversion" do
+    it "will raise on barcode_to_human!" do
       expect {
         SangerBarcodeable::Barcode.barcode_to_human!(ean13, 'XX')
       }.to raise_error
+    end
+
+    it "will raise on human_to_machine_barcode" do
       expect {
         SangerBarcodeable::Barcode.human_to_machine_barcode(human_full)
       }.to raise_error
