@@ -1,5 +1,5 @@
-module SangerBarcodable
-    class Prefix
+module SangerBarcodeable
+  class Prefix
 
     PREFIX_LENGTH = 3
 
@@ -38,12 +38,13 @@ module SangerBarcodable
     private
 
     def calculate_machine
-      first  = human[0]-64
-      second = human[1]-64
-      first  = 0 if first < 0
-      second  = 0 if second < 0
+      first_byte_value = human.getbyte(0)-64
+      second_byte_value = human.getbyte(1)-64
+      first  = first_byte_value < 0 ? 0 : first_byte_value
+      second = second_byte_value < 0 ? 0 : second_byte_value
       ((first * 27) + second)
     end
+
 
     def calculate_human
       ((machine.to_i/27)+64).chr + ((machine.to_i%27)+64).chr

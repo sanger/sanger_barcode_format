@@ -1,14 +1,12 @@
 require "sanger_barcodeable/version"
+require "sanger_barcodeable/exception_classes"
 require "sanger_barcodeable/legacy_methods"
 require "sanger_barcodeable/prefix"
+require "sanger_barcodeable/checksum"
+require "sanger_barcodeable/sanger_barcode"
 
-module SangerBarcodable
+module SangerBarcodeable
   module Barcode
-
-    BarcodeError= Class.new(StandardError)
-    InvalidBarcode = Class.new(BarcodeError)
-    SuffixRequired = Class.new(BarcodeError)
-    InvalidBarcodeOperation = Class.new(BarcodeError)
 
     HumanBarcodeFormat = /\A(\w{2})(\d{1,7})(\w{0,1}\z)/
     MachineBarcodeFormat = /\A([0-9]{3})([0-9]{7})([0-9]{2})([0-9]{1})\z/

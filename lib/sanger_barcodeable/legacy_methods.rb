@@ -1,4 +1,4 @@
-module SangerBarcodable
+module SangerBarcodeable
   # These methods are all added to maintain compatibility with the
   # Existing sequencescape Barcode API. They will be deprecated overtime.
   module LegacyMethods
