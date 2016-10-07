@@ -1,42 +1,8 @@
 require 'sanger_barcodeable/shared_barcode'
+require 'sanger_barcodeable/builders'
 
 module SangerBarcodeable
   class SangerBarcode
-
-    HumanBarcodeFormat = /\A([A-Z]{2})(\d{1,7})([A-Z]{0,1}\z)/
-    MachineBarcodeFormat = /\A([0-9]{3})([0-9]{7})([0-9]{2})([0-9]{1})\z/
-
-    module Builders
-
-      def from_human(human_barcode,checksum_required=false)
-        match = HumanBarcodeFormat.match(human_barcode)
-        raise InvalidBarcode, "The human readable barcode was invalid, perhaps it was mistyped?" if match.nil?
-        human_prefix = match[1]
-        short_barcode = match[2]
-        checksum = match[3]
-        raise SuffixRequired, "You must supply a complete barcode, including the final letter (eg. DN12345R)." if checksum_required && checksum.nil?
-        SangerBarcode.new(human_prefix,short_barcode,checksum:checksum)
-      end
-
-      def from_machine(machine_barcode)
-        machine_barcode_string = machine_barcode.to_s
-
-        # Prefixes of CR or lower result in an ean13 that begins with 0. In some cases,
-        # this digit gets stripped, and a 12-digit long UPC-A is returned instead. This
-        # is partly due to cases where we convert the ean13 to an integer, but also extends
-        # to physical labels and their subsequent scanning.
-        machine_barcode_string = machine_barcode_string.rjust(13,'0') if machine_barcode_string.length == 12
-
-        match = MachineBarcodeFormat.match(machine_barcode_string)
-        raise InvalidBarcode, "#{machine_barcode} is not a valid ean13 barcode" if match.nil?
-        full, prefix, number, checksum, check = *match
-        SangerBarcode.new(Prefix.from_machine(prefix),number,machine_barcode:machine_barcode)
-      end
-
-      def from_prefix_and_number(human_prefix,short_barcode)
-        SangerBarcode.new(human_prefix,short_barcode)
-      end
-    end
 
     extend Builders
     include SharedBarcode

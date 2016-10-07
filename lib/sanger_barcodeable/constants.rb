@@ -16,7 +16,15 @@ module SangerBarcodeable
   # This ignores the print checksum which is internal to the ean13 standard
   INTERNAL_LENGTH = PREFIX_LENGTH + NUMBER_LENGTH + CHECKSUM_LENGTH
 
-  # The EAN13 checksum uses a 0 indexed checksum
-  EAN13_ASCII_OFFSET = 65
+  # The checksum uses a 0 indexed checksum
+  CHECKSUM_ASCII_OFFSET = 65
+
+  # Regex to match human readable barcodes eg. PR1234K
+  # Matches 1: prefix, 2: number, 3: checksum/suffix (optional)
+  HumanBarcodeFormat = /\A([A-Z]{2})(\d{1,7})([A-Z]{0,1}\z)/
+  # Regext to match the full ean13 barcode, including all checksums
+  # Zero padded form only
+  # Matches 1: Prefix, 2: number 3: suffix 4: ean
+  MachineBarcodeFormat = /\A([0-9]{3})([0-9]{7})([0-9]{2})([0-9]{1})\z/
 
 end

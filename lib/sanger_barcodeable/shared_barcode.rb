@@ -48,7 +48,7 @@ module SangerBarcodeable
       # The padding restores these lost digits. While this feels off, this code ensures
       # we can handle zero-padded and non padded barcodes.
       code = code.rjust(13,'0') if code.size == 12
-      if /^(...)(.{7})(..).$/ =~ code
+      if MachineBarcodeFormat =~ code
         @prefix ||= Prefix.from_machine($1)
         @number ||= $2.to_i
         @checksum ||= Checksum.from_machine($3.to_i)
@@ -80,25 +80,20 @@ module SangerBarcodeable
       list.bytes.each_with_index do |byte,i|
         sum += byte * (i+1)
       end
-      (sum % 23 + EAN13_ASCII_OFFSET).chr
+      (sum % 23 + CHECKSUM_ASCII_OFFSET).chr
     end
 
+    # Returns the full length machine barcode
     def calculate_machine_barcode
-      calculate_barcode
+      sanger_barcode*10+calculate_EAN13(sanger_barcode)
     end
 
     def calculate_human_barcode
       "#{prefix.human}#{number.to_s}#{checksum.human}" if valid?
     end
 
-    def calculate_barcode
-      # Returns the full length machine barcode
-      barcode = sanger_barcode
-      sanger_barcode*10+calculate_EAN13(barcode)
-    end
-
+    # Returns the machine barcode minus the EAN13 print checksum.
     def sanger_barcode
-      # Returns the machine barcode minus the EAN13 print checksum.
       raise ArgumentError, "Number : #{number} to big to generate a barcode." if number.to_s.size > 7
       prefix.machine_full + (number * 100) + calculate_checksum.getbyte(0)
     end
