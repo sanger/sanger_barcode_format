@@ -38,11 +38,16 @@ module SangerBarcodeable
       calculate_EAN(@provided_machine_barcode, 1) == 0
     end
 
-    # Legacy methods
+    # Legacy method
+    # Returns an array of strings
+    # [human_prefix,number,human_checksum]
     def split_human_barcode
       [prefix.human,number.to_s,checksum.human]
     end
 
+    # Legacy method
+    # Returns an array
+    # [machine_prefix(string),number(int),machine_checksum(string)]
     def split_barcode
       [prefix.machine_s,number,checksum.machine]
     end
