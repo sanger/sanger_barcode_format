@@ -66,11 +66,11 @@ module SangerBarcodeable
     end
 
     def calculate_barcode(human_prefix, number)
-      SangerBarcode.new(human_prefix,number).machine_barcode
+      SangerBarcode.new(prefix:human_prefix,number:number).machine_barcode
     end
 
     def calculate_checksum(human_prefix, number)
-      SangerBarcode.new(human_prefix,number).checksum.human
+      SangerBarcode.new(prefix:human_prefix,number:number).checksum.human
     end
   end
 end

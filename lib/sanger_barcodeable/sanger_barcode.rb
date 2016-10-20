@@ -7,24 +7,41 @@ module SangerBarcodeable
 
     extend Builders
 
+    # Returns the machine readable ean13
     def machine_barcode
       @machine_barcode ||= calculate_machine_barcode
     end
 
+    # returns the human readable leter-number combination
     def human_barcode
       @machine_barcode ||= calculate_human_barcode
     end
 
-    def initialize(prefix,number,checksum: nil,machine_barcode: nil)
-      @prefix = prefix.is_a?(Prefix) ? prefix : Prefix.from_human(prefix)
-      @number = number.to_i
-      @checksum = Checksum.from_human(checksum) if checksum
-      @provided_machine_barcode = machine_barcode.to_i if machine_barcode
+    # Create a barcode with either a prefix and number
+    # or with a machine barcode, or a human barcode
+    def initialize(prefix:nil, number:nil, checksum: nil, machine_barcode: nil, human_barcode:nil, checksum_required:false)
+      raise ArgumentError, "You must provide either a prefix and a number, or a human or machine barcode" unless [(prefix&&number),machine_barcode,human_barcode].one?
+
+      if prefix && number
+        @prefix = prefix.is_a?(Prefix) ? prefix : Prefix.from_human(prefix)
+        @number = number.to_i
+        @checksum = Checksum.from_human(checksum) if checksum
+      elsif machine_barcode
+        self.machine_barcode = machine_barcode.to_i
+      elsif human_barcode
+        @checksum_required = checksum_required
+        self.human_barcode = human_barcode
+      else
+        # We shouldn't get here, as the argument validation above ensures one and only
+        # one condition is valid.
+        raise StandardError, 'Unexpected state.'
+      end
     end
 
     def valid?
       @number.to_s.size <= NUMBER_LENGTH &&
-      calculate_checksum == checksum.human
+      calculate_checksum == checksum.human &&
+      check_EAN
     end
 
     def checksum
@@ -35,6 +52,7 @@ module SangerBarcodeable
     def check_EAN
       #the EAN checksum is calculated so that the EAN of the code with checksum added is 0
       #except the new column (the checksum) start with a different weight (so the previous column keep the same weight)
+      return true if @provided_machine_barcode.nil?
       calculate_EAN(@provided_machine_barcode, 1) == 0
     end
 
@@ -54,6 +72,35 @@ module SangerBarcodeable
 
     ####### PRIVATE METHODS ###################################################################
     private
+
+    def machine_barcode=(machine_barcode)
+      @provided_machine_barcode = machine_barcode.to_i
+      machine_barcode_string = machine_barcode.to_s
+
+      # Prefixes of CR or lower result in an ean13 that begins with 0. In some cases,
+      # this digit gets stripped, and a 12-digit long UPC-A is returned instead. This
+      # is partly due to cases where we convert the ean13 to an integer, but also extends
+      # to physical labels and their subsequent scanning.
+      machine_barcode_string = machine_barcode_string.rjust(13,'0') if machine_barcode_string.length == 12
+
+      match = MachineBarcodeFormat.match(machine_barcode_string)
+      raise InvalidBarcode, "#{machine_barcode} is not a valid ean13 barcode" if match.nil?
+      full, prefix, number, checksum, check = *match
+      @prefix = Prefix.from_machine(prefix)
+      @number = number.to_i
+    end
+
+    def human_barcode=(human_barcode)
+      match = HumanBarcodeFormat.match(human_barcode)
+      raise InvalidBarcode, "The human readable barcode was invalid, perhaps it was mistyped?" if match.nil?
+      human_prefix = match[1]
+      short_barcode = match[2]
+      checksum = match[3]
+      raise ChecksumRequired, "You must supply a complete barcode, including the final letter (eg. DN12345R)." if @checksum_required && checksum.nil?
+      @prefix = Prefix.from_human(human_prefix)
+      @number = short_barcode.to_i
+      @checksum = Checksum.from_human(checksum) if checksum
+    end
 
     def calculate_EAN13(code)
       calculate_EAN(code)
