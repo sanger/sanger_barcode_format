@@ -25,6 +25,6 @@ module SangerBarcodeable
   # Regext to match the full ean13 barcode, including all checksums
   # Zero padded form only
   # Matches 1: Prefix, 2: number 3: suffix 4: ean
-  MachineBarcodeFormat = /\A([0-9]{3})([0-9]{7})([0-9]{2})([0-9]{1})\z/
+  MachineBarcodeFormat = /\A(\d{3})(\d{7})(\d{2})(\d{1})\z/
 
 end

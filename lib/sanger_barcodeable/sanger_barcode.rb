@@ -3,7 +3,7 @@ require 'sanger_barcodeable/builders'
 module SangerBarcodeable
   class SangerBarcode
 
-    attr_reader :prefix, :number
+    attr_reader :prefix, :number, :checksum
 
     extend Builders
 
@@ -14,11 +14,19 @@ module SangerBarcodeable
 
     # returns the human readable leter-number combination
     def human_barcode
-      @machine_barcode ||= calculate_human_barcode
+      @human_barcode ||= calculate_human_barcode
     end
 
-    # Create a barcode with either a prefix and number
-    # or with a machine barcode, or a human barcode
+    def checksum
+      @checksum ||= Checksum.from_human(calculate_checksum)
+    end
+
+    # Create a new barcode object.
+    # Either:
+    # - Provide a prefix and number
+    # - Provide a machine barcode (Ean13)
+    # - Provide a human readable barcode (Eg. DN12345) If checksum required is set to true will raise ChecksumRequired
+    #   if the internal checksum character is missing.
     def initialize(prefix:nil, number:nil, checksum: nil, machine_barcode: nil, human_barcode:nil, checksum_required:false)
       raise ArgumentError, "You must provide either a prefix and a number, or a human or machine barcode" unless [(prefix&&number),machine_barcode,human_barcode].one?
 
@@ -39,21 +47,16 @@ module SangerBarcodeable
     end
 
     def valid?
-      @number.to_s.size <= NUMBER_LENGTH &&
+      number.to_s.size <= NUMBER_LENGTH &&
       calculate_checksum == checksum.human &&
       check_EAN
-    end
-
-    def checksum
-      return @checksum unless @checksum.nil?
-      @checksum = Checksum.from_human(calculate_checksum)
     end
 
     def check_EAN
       #the EAN checksum is calculated so that the EAN of the code with checksum added is 0
       #except the new column (the checksum) start with a different weight (so the previous column keep the same weight)
-      return true if @provided_machine_barcode.nil?
-      calculate_EAN(@provided_machine_barcode, 1) == 0
+      return true if @machine_barcode.nil?
+      calculate_EAN(@machine_barcode, 1) == 0
     end
 
     # Legacy method
@@ -74,7 +77,7 @@ module SangerBarcodeable
     private
 
     def machine_barcode=(machine_barcode)
-      @provided_machine_barcode = machine_barcode.to_i
+      @machine_barcode = machine_barcode.to_i
       machine_barcode_string = machine_barcode.to_s
 
       # Prefixes of CR or lower result in an ean13 that begins with 0. In some cases,
