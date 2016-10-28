@@ -12,7 +12,8 @@ module SangerBarcodeable
   PREFIX_LENGTH = 3 # The digit length of the numeric encoded checksum
   NUMBER_LENGTH = 7 # The digit length of the unique barcode number
   CHECKSUM_LENGTH = 2 # The digit length of the internal checksum
-  # THe length of the internally generated portion of the barcode
+
+  # The length of the internally generated portion of the barcode
   # This ignores the print checksum which is internal to the ean13 standard
   INTERNAL_LENGTH = PREFIX_LENGTH + NUMBER_LENGTH + CHECKSUM_LENGTH
 
@@ -22,9 +23,11 @@ module SangerBarcodeable
   # Regex to match human readable barcodes eg. PR1234K
   # Matches 1: prefix, 2: number, 3: checksum/suffix (optional)
   HumanBarcodeFormat = /\A([A-Z]{2})(\d{1,7})([A-Z]{0,1}\z)/
-  # Regext to match the full ean13 barcode, including all checksums
-  # Zero padded form only
+
+  # Regex to match the full ean13 barcode, including all checksums
+  # The {2,3} prefix matcher ensures that any barcodes begining
+  # with zero are correctly parsed, even if the zero is stripped.
   # Matches 1: Prefix, 2: number 3: suffix 4: ean
-  MachineBarcodeFormat = /\A(\d{3})(\d{7})(\d{2})(\d{1})\z/
+  MachineBarcodeFormat = /\A(\d{2,3})(\d{7})(\d{2})(\d{1})\z/
 
 end

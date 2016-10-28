@@ -8,15 +8,22 @@ module SangerBarcodeable
     extend Builders
 
     # Returns the machine readable ean13
+    #
+    # @return [Int] The machine readable ean13 barcode
     def machine_barcode
       @machine_barcode ||= calculate_machine_barcode
     end
 
-    # returns the human readable leter-number combination
+    # Returns the human readable leter-number combination
+    #
+    # @return [String] eg. DN12345R
     def human_barcode
       @human_barcode ||= calculate_human_barcode
     end
 
+    # Returns the internally used checksum
+    #
+    # @return [SangerBarcodeable::Checksum] The internally used checksum
     def checksum
       @checksum ||= Checksum.from_human(calculate_checksum)
     end
@@ -27,7 +34,15 @@ module SangerBarcodeable
     # - Provide a machine barcode (Ean13)
     # - Provide a human readable barcode (Eg. DN12345) If checksum required is set to true will raise ChecksumRequired
     #   if the internal checksum character is missing.
-    def initialize(prefix:nil, number:nil, checksum: nil, machine_barcode: nil, human_barcode:nil, checksum_required:false)
+    #
+    # @param [String||SangerBarcodable::Prefix] prefix:nil The two letter prefix or a Prefix object
+    # @param [Int] number:nil The unique number, up to 7 digits long
+    # @param [String] checksum:nil Optional human readable checksum character.
+    # @param [Sting||Int] machine_barcode:nil Ean13 barcode as red by a scanner
+    # @param [String] human_barcode:nil Human readable barcode eg. DN12345R
+    # @param [Bool] checksum_required:false If set to true will enforce presence of checksum on human_barcode input
+    # @return [SangerBarcodable::SangerBarcode] A representation of the barcode
+    def initialize(prefix:nil, number:nil, checksum:nil, machine_barcode:nil, human_barcode:nil, checksum_required:false)
       raise ArgumentError, "You must provide either a prefix and a number, or a human or machine barcode" unless [(prefix&&number),machine_barcode,human_barcode].one?
 
       if prefix && number
@@ -76,19 +91,20 @@ module SangerBarcodeable
     ####### PRIVATE METHODS ###################################################################
     private
 
+    # Used internally during barcode creation. Takes a machine barcode and
+    # splits it into is component parts
+    #
+    # @param [String||Int] The 13 digit long ean13 barcode
+    # @return [String||Int] Returns the input
     def machine_barcode=(machine_barcode)
       @machine_barcode = machine_barcode.to_i
-      machine_barcode_string = machine_barcode.to_s
-
-      # Prefixes of CR or lower result in an ean13 that begins with 0. In some cases,
-      # this digit gets stripped, and a 12-digit long UPC-A is returned instead. This
-      # is partly due to cases where we convert the ean13 to an integer, but also extends
-      # to physical labels and their subsequent scanning.
-      machine_barcode_string = machine_barcode_string.rjust(13,'0') if machine_barcode_string.length == 12
-
-      match = MachineBarcodeFormat.match(machine_barcode_string)
+      match = MachineBarcodeFormat.match(machine_barcode.to_s)
       raise InvalidBarcode, "#{machine_barcode} is not a valid ean13 barcode" if match.nil?
-      full, prefix, number, checksum, check = *match
+      set_from_machine_components(*match)
+      machine_barcode
+    end
+
+    def set_from_machine_components(_full, prefix, number, _checksum, _check)
       @prefix = Prefix.from_machine(prefix)
       @number = number.to_i
     end
@@ -113,12 +129,12 @@ module SangerBarcodeable
       #The EAN is calculated by adding each digit modulo 10 ten weighted by 1 or 3 ( in seq)
       ean = 0
       weight = initial_weight
-      while code >0
+      while code > 0
         code, c = code.divmod 10
         ean += c*weight % 10
         weight = weight == 1 ? 3 : 1
       end
-      (10 -ean) % 10
+      (10 - ean) % 10
     end
 
     def calculate_checksum
@@ -137,7 +153,7 @@ module SangerBarcodeable
     end
 
     def calculate_human_barcode
-      "#{prefix.human}#{number.to_s}#{checksum.human}" if valid?
+      "#{prefix.human}#{number}#{checksum.human}" if valid?
     end
 
     # Returns the machine barcode minus the EAN13 print checksum.

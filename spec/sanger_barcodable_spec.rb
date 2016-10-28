@@ -66,17 +66,17 @@ describe SangerBarcodeable::Barcode do
 
   context "with valid parameters" do
 
-    let (:human_prefix) {'PR'}
-    let (:human_checksum) {'K'}
-    let (:human_full) {'PR1234K'}
-    let (:short_barcode) {1234}
+    let(:human_prefix) {'PR'}
+    let(:human_checksum) {'K'}
+    let(:human_full) {'PR1234K'}
+    let(:short_barcode) {1234}
 
-    let (:machine_prefix_s) {'450'}
-    let (:machine_prefix_i) { 450 }
-    let (:ean13) {4500001234757}
-    let (:pre_ean13) {450000123475}
-    let (:machine_checksum) {75}
-    let (:print_checksum) {7}
+    let(:machine_prefix_s) {'450'}
+    let(:machine_prefix_i) { 450 }
+    let(:ean13) {4500001234757}
+    let(:pre_ean13) {450000123475}
+    let(:machine_checksum) {75}
+    let(:print_checksum) {7}
 
     it_behaves_like "a legacy barcode"
   end
@@ -84,33 +84,33 @@ describe SangerBarcodeable::Barcode do
 
   context "with low prefix parameters" do
 
-    let (:human_prefix) {'BD'}
-    let (:human_checksum) {'P'}
-    let (:human_full) {'BD1P'}
-    let (:short_barcode) {1}
+    let(:human_prefix) {'BD'}
+    let(:human_checksum) {'P'}
+    let(:human_full) {'BD1P'}
+    let(:short_barcode) {1}
 
-    let (:machine_prefix_s) {'058'}
-    let (:machine_prefix_i) { 58 }
-    let (:ean13) {580000001806}
-    let (:pre_ean13) {58000000180}
-    let (:machine_checksum) {80}
-    let (:print_checksum) {8}
+    let(:machine_prefix_s) {'058'}
+    let(:machine_prefix_i) { 58 }
+    let(:ean13) {580000001806}
+    let(:pre_ean13) {58000000180}
+    let(:machine_checksum) {80}
+    let(:print_checksum) {8}
 
     it_behaves_like "a legacy barcode"
   end
 
   context "with invalid parameters" do
 
-    let (:human_prefix) {'XX'}
-    let (:human_checksum) {'X'}
-    let (:human_full) {'XX1234X'}
-    let (:short_barcode) {1234}
+    let(:human_prefix) {'XX'}
+    let(:human_checksum) {'X'}
+    let(:human_full) {'XX1234X'}
+    let(:short_barcode) {1234}
 
-    let (:machine_prefix) {450}
-    let (:ean13) {4500101234757}
-    let (:pre_ean13) {450010123475}
-    let (:machine_checksum) {75}
-    let (:print_checksum) {7}
+    let(:machine_prefix) {450}
+    let(:ean13) {4500101234757}
+    let(:pre_ean13) {450010123475}
+    let(:machine_checksum) {75}
+    let(:print_checksum) {7}
 
     it "has a invaild ean13" do
       SangerBarcodeable::Barcode.check_EAN(ean13).should eq(false)
@@ -131,8 +131,8 @@ describe SangerBarcodeable::Barcode do
   end
 
   context "which is too long" do
-    let (:human_prefix) {'PR'}
-    let (:short_barcode) {12345678}
+    let(:human_prefix) {'PR'}
+    let(:short_barcode) {12345678}
 
     it "will raise an exception" do
       expect {
