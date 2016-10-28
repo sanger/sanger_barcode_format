@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: SangerBarcodeable::LegacyMethods
+  
+    &mdash; Documentation by YARD 0.9.5
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "SangerBarcodeable::LegacyMethods";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (L)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SangerBarcodeable.html" title="SangerBarcodeable (module)">SangerBarcodeable</a></span></span>
+     &raquo; 
+    <span class="title">LegacyMethods</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <iframe id="search_frame" src="../class_list.html"></iframe>
+
+      <div id="content"><h1>Module: SangerBarcodeable::LegacyMethods
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="Barcode.html" title="SangerBarcodeable::Barcode (module)">Barcode</a></span></dd>
+  </dl>
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/sanger_barcodeable/legacy_methods.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>These methods are all added to maintain compatibility with the Existing
+sequencescape Barcode API. They will be deprecated over time.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#barcode_to_human-instance_method" title="#barcode_to_human (instance method)">#<strong>barcode_to_human</strong>(code)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#barcode_to_human%21-instance_method" title="#barcode_to_human! (instance method)">#<strong>barcode_to_human!</strong>(code, prefix = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the Human barcode or raises an InvalidBarcode exception if there is
+a problem.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#calculate_barcode-instance_method" title="#calculate_barcode (instance method)">#<strong>calculate_barcode</strong>(human_prefix, number)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#calculate_checksum-instance_method" title="#calculate_checksum (instance method)">#<strong>calculate_checksum</strong>(human_prefix, number)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_EAN-instance_method" title="#check_EAN (instance method)">#<strong>check_EAN</strong>(code)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#human_to_machine_barcode-instance_method" title="#human_to_machine_barcode (instance method)">#<strong>human_to_machine_barcode</strong>(human_barcode)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#number_to_human-instance_method" title="#number_to_human (instance method)">#<strong>number_to_human</strong>(machine_barcode)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prefix_from_barcode-instance_method" title="#prefix_from_barcode (instance method)">#<strong>prefix_from_barcode</strong>(machine_barcode)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prefix_to_human-instance_method" title="#prefix_to_human (instance method)">#<strong>prefix_to_human</strong>(prefix)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#split_barcode-instance_method" title="#split_barcode (instance method)">#<strong>split_barcode</strong>(code)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#split_human_barcode-instance_method" title="#split_human_barcode (instance method)">#<strong>split_human_barcode</strong>(code)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="barcode_to_human-instance_method">
+  
+    #<strong>barcode_to_human</strong>(code)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_barcode_to_human'>barcode_to_human</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='const'>SangerBarcodeable</span><span class='op'>::</span><span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_human_barcode'>human_barcode</span>
+  <span class='kw'>rescue</span> <span class='const'>InvalidBarcode</span>
+    <span class='comment'># Catching exceptions to preseve old behaviour
+</span>    <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="barcode_to_human!-instance_method">
+  
+    #<strong>barcode_to_human!</strong>(code, prefix = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the Human barcode or raises an InvalidBarcode exception if there is
+a problem.  The barcode is considered invalid if it does not translate to a
+Human barcode or, when the optional <code>prefix</code> is specified, its
+human equivalent does not match.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_barcode_to_human!'>barcode_to_human!</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='comma'>,</span> <span class='id identifier rubyid_prefix'>prefix</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_barcode'>barcode</span> <span class='op'>=</span> <span class='const'>SangerBarcodeable</span><span class='op'>::</span><span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>InvalidBarcode</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Barcode </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_code'>code</span> <span class='embexpr_end'>}</span><span class='tstring_content'> appears to be invalid</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_barcode'>barcode</span><span class='period'>.</span><span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span> <span class='op'>==</span> <span class='id identifier rubyid_prefix'>prefix</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>InvalidBarcode</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Barcode </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_code'>code</span> <span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_barcode'>barcode</span><span class='period'>.</span><span class='id identifier rubyid_human_barcode'>human_barcode</span> <span class='embexpr_end'>}</span><span class='tstring_content'>) does not match prefix </span><span class='embexpr_beg'>#{</span> <span class='id identifier rubyid_prefix'>prefix</span> <span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_barcode'>barcode</span><span class='period'>.</span><span class='id identifier rubyid_human_barcode'>human_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="calculate_barcode-instance_method">
+  
+    #<strong>calculate_barcode</strong>(human_prefix, number)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_calculate_barcode'>calculate_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span> <span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span>
+  <span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>prefix:</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span><span class='label'>number:</span><span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="calculate_checksum-instance_method">
+  
+    #<strong>calculate_checksum</strong>(human_prefix, number)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_calculate_checksum'>calculate_checksum</span><span class='lparen'>(</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span> <span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span>
+  <span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>prefix:</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span><span class='label'>number:</span><span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_checksum'>checksum</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_EAN-instance_method">
+  
+    #<strong>check_EAN</strong>(code)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_EAN'>check_EAN</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='const'>SangerBarcodeable</span><span class='op'>::</span><span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_check_EAN'>check_EAN</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="human_to_machine_barcode-instance_method">
+  
+    #<strong>human_to_machine_barcode</strong>(human_barcode)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_human_to_machine_barcode'>human_to_machine_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_bc'>bc</span> <span class='op'>=</span> <span class='const'>SangerBarcodeable</span><span class='op'>::</span><span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_from_human'>from_human</span><span class='lparen'>(</span><span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>InvalidBarcode</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The human readable barcode was invalid, perhaps it was mistyped?</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="number_to_human-instance_method">
+  
+    #<strong>number_to_human</strong>(machine_barcode)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16
+17
+18
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_number_to_human'>number_to_human</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='const'>SangerBarcodeable</span><span class='op'>::</span><span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_number'>number</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>rescue</span> <span class='const'>InvalidBarcode</span>
+    <span class='comment'># Catching exceptions to preseve old behaviour
+</span>    <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prefix_from_barcode-instance_method">
+  
+    #<strong>prefix_from_barcode</strong>(machine_barcode)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26
+27
+28
+29
+30</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prefix_from_barcode'>prefix_from_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='const'>SangerBarcodeable</span><span class='op'>::</span><span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span>
+  <span class='kw'>rescue</span> <span class='const'>InvalidBarcode</span>
+    <span class='comment'># Catching exceptions to preseve old behaviour
+</span>    <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prefix_to_human-instance_method">
+  
+    #<strong>prefix_to_human</strong>(prefix)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prefix_to_human'>prefix_to_human</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix'>prefix</span><span class='rparen'>)</span>
+  <span class='const'>Prefix</span><span class='period'>.</span><span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix'>prefix</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="split_barcode-instance_method">
+  
+    #<strong>split_barcode</strong>(code)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_split_barcode'>split_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='const'>SangerBarcodeable</span><span class='op'>::</span><span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_split_barcode'>split_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="split_human_barcode-instance_method">
+  
+    #<strong>split_human_barcode</strong>(code)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/legacy_methods.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_split_human_barcode'>split_human_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='const'>SangerBarcodeable</span><span class='op'>::</span><span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_from_human'>from_human</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_split_human_barcode'>split_human_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Oct 27 16:21:40 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.5 (ruby-2.3.1).
+</div>
+
+    </div>
+  </body>
+</html>

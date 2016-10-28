@@ -29,5 +29,4 @@ module SangerBarcodeable
   # with zero are correctly parsed, even if the zero is stripped.
   # Matches 1: Prefix, 2: number 3: suffix 4: ean
   MachineBarcodeFormat = /\A(\d{2,3})(\d{7})(\d{2})(\d{1})\z/
-
 end
