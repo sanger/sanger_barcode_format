@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sanger_barcodeable (0.0.1)
+    sanger_barcode_format (0.0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -38,7 +38,7 @@ DEPENDENCIES
   rake (~> 0.9.2.2)
   rspec (~> 2.11.0)
   rubocop
-  sanger_barcodeable!
+  sanger_barcode_format!
   yard
 
 BUNDLED WITH

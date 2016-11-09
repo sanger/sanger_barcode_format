@@ -1,4 +1,4 @@
-module SangerBarcodeable
+module SBCF
   # Prefixes are found at the front of sanger_barcodable_spec
   # They have a two character human form, or a three digit machine form
   class Prefix
@@ -21,8 +21,8 @@ module SangerBarcodeable
     # Return a new instance of the prefix class, either from the supplier
     # human_prefix or supplief machine_prefix
     #
-    # @param [String] human_prefix: nil A two character prefix (eg. DN)
-    # @param [Int] machine_prefix: nil A two-three digit prefix (eg. 122)
+    # @param [String] human_prefix A two character prefix (eg. DN)
+    # @param [Int] machine_prefix A two-three digit prefix (eg. 122)
     # @return [Prefix] A new instance of the prefix class
     def initialize(human_prefix: nil, machine_prefix: nil)
       raise BarcodeError, 'Must supply a human or machine prefix' unless human_prefix || machine_prefix

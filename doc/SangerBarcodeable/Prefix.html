@@ -101,7 +101,19 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Prefixes are found at the front of sanger_barcodable_spec They have a two
+character human form, or a three digit machine form</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -119,7 +131,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#from_human-class_method" title="from_human (class method)">.<strong>from_human</strong>(human_prefix)  &#x21d2; Object </a>
+      <a href="#from_human-class_method" title="from_human (class method)">.<strong>from_human</strong>(human_prefix)  &#x21d2; Prefix </a>
     
 
     
@@ -133,7 +145,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Create a prefix object from the character string.</p>
+</div></span>
   
 </li>
 
@@ -141,7 +155,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#from_machine-class_method" title="from_machine (class method)">.<strong>from_machine</strong>(machine_prefix)  &#x21d2; Object </a>
+      <a href="#from_machine-class_method" title="from_machine (class method)">.<strong>from_machine</strong>(machine_prefix)  &#x21d2; Prefix </a>
     
 
     
@@ -155,7 +169,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Create a prefix object from the digit representation.</p>
+</div></span>
   
 </li>
 
@@ -172,7 +188,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#human-instance_method" title="#human (instance method)">#<strong>human</strong>  &#x21d2; Object </a>
+      <a href="#human-instance_method" title="#human (instance method)">#<strong>human</strong>  &#x21d2; String </a>
     
 
     
@@ -186,7 +202,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>A two character prefix (eg. DN).</p>
+</div></span>
   
 </li>
 
@@ -211,7 +229,8 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>A new instance of Prefix.</p>
+<p>Return a new instance of the prefix class, either from the supplier
+human_prefix or supplief machine_prefix.</p>
 </div></span>
   
 </li>
@@ -220,7 +239,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#machine-instance_method" title="#machine (instance method)">#<strong>machine</strong>  &#x21d2; Object </a>
+      <a href="#machine-instance_method" title="#machine (instance method)">#<strong>machine</strong>  &#x21d2; Int </a>
     
 
     
@@ -234,7 +253,33 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the 3 digit encoded prefix as used in barcodes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#machine_full-instance_method" title="#machine_full (instance method)">#<strong>machine_full</strong>  &#x21d2; Int </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'>
+<p>This method will be made private in future versions</p>
+</div></span>
   
 </li>
 
@@ -242,7 +287,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#machine_full-instance_method" title="#machine_full (instance method)">#<strong>machine_full</strong>  &#x21d2; Object </a>
+      <a href="#machine_s-instance_method" title="#machine_s (instance method)">#<strong>machine_s</strong>  &#x21d2; String </a>
     
 
     
@@ -256,29 +301,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#machine_s-instance_method" title="#machine_s (instance method)">#<strong>machine_s</strong>  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the 3 digit encoded prefix as used in barcodes (zero padded).</p>
+</div></span>
   
 </li>
 
@@ -301,13 +326,50 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns a new instance of Prefix</p>
+<p>Return a new instance of the prefix class, either from the supplier
+human_prefix or supplief machine_prefix</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>human_prefix</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A two character prefix (eg. DN)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>machine_prefix</span>
+      
+      
+        <span class='type'>(<tt>Int</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A two-three digit prefix (eg. 122)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Raises:</p>
 <ul class="raise">
   
@@ -328,17 +390,17 @@
       <pre class="lines">
 
 
-12
-13
-14
-15
-16</pre>
+27
+28
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 27</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>human_prefix:</span> <span class='kw'>nil</span><span class='comma'>,</span><span class='label'>machine_prefix:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>BarcodeError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Must supply a human or machine prefix</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='op'>||</span><span class='id identifier rubyid_machine_prefix'>machine_prefix</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>human_prefix:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>machine_prefix:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>BarcodeError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Must supply a human or machine prefix</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_human_prefix'>human_prefix</span> <span class='op'>||</span> <span class='id identifier rubyid_machine_prefix'>machine_prefix</span>
   <span class='ivar'>@human</span> <span class='op'>=</span> <span class='id identifier rubyid_human_prefix'>human_prefix</span>
   <span class='ivar'>@machine</span> <span class='op'>=</span> <span class='id identifier rubyid_machine_prefix'>machine_prefix</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='kw'>if</span> <span class='id identifier rubyid_machine_prefix'>machine_prefix</span>
 <span class='kw'>end</span></pre>
@@ -357,27 +419,76 @@
       <div class="method_details first">
   <h3 class="signature first" id="from_human-class_method">
   
-    .<strong>from_human</strong>(human_prefix)  &#x21d2; <tt>Object</tt> 
+    .<strong>from_human</strong>(human_prefix)  &#x21d2; <tt><span class='object_link'><a href="" title="SangerBarcodeable::Prefix (class)">Prefix</a></span></tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create a prefix object from the character string</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>human_prefix</span>
+      
+      
+        <span class='type'>(<tt>Sting</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A two character prefix (eg. DN)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="SangerBarcodeable::Prefix (class)">Prefix</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A new instance of the prefix class</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-4
-5
-6</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_human'>from_human</span><span class='lparen'>(</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>human_prefix:</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>human_prefix:</span> <span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -387,27 +498,76 @@
       <div class="method_details ">
   <h3 class="signature " id="from_machine-class_method">
   
-    .<strong>from_machine</strong>(machine_prefix)  &#x21d2; <tt>Object</tt> 
+    .<strong>from_machine</strong>(machine_prefix)  &#x21d2; <tt><span class='object_link'><a href="" title="SangerBarcodeable::Prefix (class)">Prefix</a></span></tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Create a prefix object from the digit representation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>machine_prefix</span>
+      
+      
+        <span class='type'>(<tt>Int</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A two-three digit prefix (eg. 122)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="SangerBarcodeable::Prefix (class)">Prefix</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A new instance of the prefix class</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-8
-9
-10</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_prefix'>machine_prefix</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>machine_prefix:</span><span class='id identifier rubyid_machine_prefix'>machine_prefix</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>machine_prefix:</span> <span class='id identifier rubyid_machine_prefix'>machine_prefix</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -423,24 +583,53 @@
       <div class="method_details first">
   <h3 class="signature first" id="human-instance_method">
   
-    #<strong>human</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>human</strong>  &#x21d2; <tt>String</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A two character prefix (eg. DN)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A two character prefix (eg. DN)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-28
-29
-30</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_human'>human</span>
   <span class='ivar'>@human</span> <span class='op'>||=</span> <span class='id identifier rubyid_calculate_human'>calculate_human</span>
@@ -453,24 +642,53 @@
       <div class="method_details ">
   <h3 class="signature " id="machine-instance_method">
   
-    #<strong>machine</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>machine</strong>  &#x21d2; <tt>Int</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the 3 digit encoded prefix as used in barcodes</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Int</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A two - three digit prefix (eg. 122)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-18
-19
-20</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_machine'>machine</span>
   <span class='ivar'>@machine</span> <span class='op'>||=</span> <span class='id identifier rubyid_calculate_machine'>calculate_machine</span>
@@ -483,24 +701,56 @@
       <div class="method_details ">
   <h3 class="signature " id="machine_full-instance_method">
   
-    #<strong>machine_full</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>machine_full</strong>  &#x21d2; <tt>Int</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'>
+<p>This method will be made private in future versions</p>
+</div></div>
+
+<p>Returns the prefix mutliplied to allow addition of the numeric form</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Int</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>barcode prefix multipled by 10000000</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-32
-33
-34</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_machine_full'>machine_full</span>
   <span class='id identifier rubyid_machine'>machine</span> <span class='op'>*</span> <span class='int'>10</span><span class='op'>**</span><span class='lparen'>(</span><span class='const'>NUMBER_LENGTH</span> <span class='op'>+</span> <span class='const'>CHECKSUM_LENGTH</span><span class='rparen'>)</span>
@@ -513,31 +763,60 @@
       <div class="method_details ">
   <h3 class="signature " id="machine_s-instance_method">
   
-    #<strong>machine_s</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>machine_s</strong>  &#x21d2; <tt>String</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the 3 digit encoded prefix as used in barcodes (zero padded)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A zero padded three digit prefix (eg. 122)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-22
-23
-24
-25
-26</pre>
+43
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/prefix.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_machine_s'>machine_s</span>
   <span class='id identifier rubyid_machine_s'>machine_s</span> <span class='op'>=</span> <span class='id identifier rubyid_machine'>machine</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
-  <span class='id identifier rubyid_padding'>padding</span> <span class='op'>=</span> <span class='id identifier rubyid_above_zero'>above_zero</span><span class='lparen'>(</span><span class='const'>PREFIX_LENGTH</span><span class='op'>-</span><span class='id identifier rubyid_machine_s'>machine_s</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_machine_s'>machine_s</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span><span class='op'>*</span><span class='id identifier rubyid_padding'>padding</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_padding'>padding</span> <span class='op'>=</span> <span class='id identifier rubyid_above_zero'>above_zero</span><span class='lparen'>(</span><span class='const'>PREFIX_LENGTH</span> <span class='op'>-</span> <span class='id identifier rubyid_machine_s'>machine_s</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_machine_s'>machine_s</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span> <span class='op'>*</span> <span class='id identifier rubyid_padding'>padding</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -549,7 +828,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Oct 27 16:21:40 2016 by
+  Generated on Mon Oct 31 13:43:55 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

@@ -1,4 +1,4 @@
-module SangerBarcodeable
+module SBCF
   BarcodeError = Class.new(StandardError)
   InvalidBarcode = Class.new(BarcodeError)
   ChecksumRequired = Class.new(BarcodeError)

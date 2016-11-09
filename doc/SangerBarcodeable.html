@@ -87,11 +87,22 @@
   
 </div>
 
-<h2>Defined Under Namespace</h2>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Constant for namespacing, see README.md or SangerBarcode for documentation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="SangerBarcodeable/Barcode.html" title="SangerBarcodeable::Barcode (module)">Barcode</a></span>, <span class='object_link'><a href="SangerBarcodeable/Builders.html" title="SangerBarcodeable::Builders (module)">Builders</a></span>, <span class='object_link'><a href="SangerBarcodeable/LegacyMethods.html" title="SangerBarcodeable::LegacyMethods (module)">LegacyMethods</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="SangerBarcodeable/Builders.html" title="SangerBarcodeable::Builders (module)">Builders</a></span>, <span class='object_link'><a href="SangerBarcodeable/LegacyMethods.html" title="SangerBarcodeable::LegacyMethods (module)">LegacyMethods</a></span>
     
   
     
@@ -104,9 +115,20 @@
   <dl class="constants">
     
       <dt id="VERSION-constant" class="">VERSION =
-        
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Version number</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
       </dt>
-      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.0.1</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.0.1</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
     
       <dt id="ASCII_OFFSET-constant" class="">ASCII_OFFSET =
         <div class="docstring">
@@ -197,7 +219,7 @@ compatibility. I am not aware of the original reasons for the decision.</p>
         <div class="docstring">
   <div class="discussion">
     
-<p>THe length of the internally generated portion of the barcode This ignores
+<p>The length of the internally generated portion of the barcode This ignores
 the print checksum which is internal to the ean13 standard</p>
 
 
@@ -226,7 +248,7 @@ the print checksum which is internal to the ean13 standard</p>
       </dt>
       <dd><pre class="code"><span class='int'>65</span></pre></dd>
     
-      <dt id="HumanBarcodeFormat-constant" class="">HumanBarcodeFormat =
+      <dt id="HUMAN_BARCODE_FORMAT-constant" class="">HUMAN_BARCODE_FORMAT =
         <div class="docstring">
   <div class="discussion">
     
@@ -243,12 +265,14 @@ number, 3: checksum/suffix (optional)</p>
       </dt>
       <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A([A-Z]{2})(\d{1,7})([A-Z]{0,1}\z)</span><span class='regexp_end'>/</span></span></pre></dd>
     
-      <dt id="MachineBarcodeFormat-constant" class="">MachineBarcodeFormat =
+      <dt id="MACHINE_BARCODE_FORMAT-constant" class="">MACHINE_BARCODE_FORMAT =
         <div class="docstring">
   <div class="discussion">
     
-<p>Regext to match the full ean13 barcode, including all checksums Zero padded
-form only Matches 1: Prefix, 2: number 3: suffix 4: ean</p>
+<p>Regex to match the full ean13 barcode, including all checksums The 2,3
+prefix matcher ensures that any barcodes begining with zero are correctly
+parsed, even if the zero is stripped. Matches 1: Prefix, 2: number 3:
+suffix 4: ean</p>
 
 
   </div>
@@ -258,7 +282,7 @@ form only Matches 1: Prefix, 2: number 3: suffix 4: ean</p>
 
 </div>
       </dt>
-      <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(\d{3})(\d{7})(\d{2})(\d{1})\z</span><span class='regexp_end'>/</span></span></pre></dd>
+      <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(\d{2,3})(\d{7})(\d{2})(\d{1})\z</span><span class='regexp_end'>/</span></span></pre></dd>
     
       <dt id="BarcodeError-constant" class="">BarcodeError =
         
@@ -293,7 +317,7 @@ form only Matches 1: Prefix, 2: number 3: suffix 4: ean</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Oct 27 16:21:40 2016 by
+  Generated on Mon Oct 31 13:43:54 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

@@ -1,5 +1,5 @@
-require 'sanger_barcodeable'
-require 'sanger_barcodeable/legacy_methods'
+require 'sanger_barcode_format'
+require 'sanger_barcode_format/legacy_methods'
 require 'spec_helper'
 
 shared_examples_for 'a legacy barcode' do
@@ -55,10 +55,10 @@ shared_examples_for 'a legacy barcode' do
   end
 end
 
-describe SangerBarcodeable::LegacyMethods do
+describe SBCF::LegacyMethods do
   subject do
     module LegacyModule
-      extend SangerBarcodeable::LegacyMethods
+      extend SBCF::LegacyMethods
     end
   end
 
@@ -119,7 +119,27 @@ describe SangerBarcodeable::LegacyMethods do
     it 'will raise on human_to_machine_barcode' do
       expect do
         subject.human_to_machine_barcode(human_full)
-      end.to raise_error
+      end.to raise_error, SBCF::InvalidBarcode
+    end
+  end
+
+  # This doesn't quite match up with the true legacy behaviour
+  # which raises ArgumentError if the barcode is too long
+  # however there seems little point in reproducing that behaviour
+  # precisely
+  context 'with an invalid machine_barcode' do
+    let(:ean13) { 45001057 }
+
+    it 'number_to_human returns nil' do
+      expect(subject.number_to_human(ean13)).to be_nil
+    end
+
+    it 'prefix_from_barcode returns nil' do
+      expect(subject.prefix_from_barcode(ean13)).to be_nil
+    end
+
+    it 'barcode_to_human returns nil' do
+      expect(subject.barcode_to_human(ean13)).to be_nil
     end
   end
 
@@ -130,7 +150,7 @@ describe SangerBarcodeable::LegacyMethods do
     it 'will raise an exception' do
       expect do
         subject.calculate_barcode(human_prefix, short_barcode)
-      end.to raise_error
+      end.to raise_error ArgumentError
     end
   end
 end

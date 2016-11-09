@@ -233,8 +233,8 @@ ChecksumRequired if the checksum is missing, yet checksum_required is true</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/builders.rb', line 9</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_from_human'>from_human</span><span class='lparen'>(</span><span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='comma'>,</span><span class='id identifier rubyid_checksum_required'>checksum_required</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
-  <span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>human_barcode:</span><span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='comma'>,</span><span class='label'>checksum_required:</span><span class='id identifier rubyid_checksum_required'>checksum_required</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_from_human'>from_human</span><span class='lparen'>(</span><span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='comma'>,</span> <span class='id identifier rubyid_checksum_required'>checksum_required</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>human_barcode:</span> <span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='comma'>,</span> <span class='label'>checksum_required:</span> <span class='id identifier rubyid_checksum_required'>checksum_required</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -276,7 +276,7 @@ Raises InvalidBarcode if the barcode isn&#39;t 12-13 digits long</p>
       <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/builders.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_from_machine'>from_machine</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
-  <span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>machine_barcode:</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
+  <span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>machine_barcode:</span> <span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -305,8 +305,8 @@ Raises InvalidBarcode if the barcode isn&#39;t 12-13 digits long</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/sanger_barcodeable/builders.rb', line 19</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_from_prefix_and_number'>from_prefix_and_number</span><span class='lparen'>(</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span><span class='id identifier rubyid_short_barcode'>short_barcode</span><span class='rparen'>)</span>
-  <span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>prefix:</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span><span class='label'>number:</span><span class='id identifier rubyid_short_barcode'>short_barcode</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_from_prefix_and_number'>from_prefix_and_number</span><span class='lparen'>(</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span> <span class='id identifier rubyid_short_barcode'>short_barcode</span><span class='rparen'>)</span>
+  <span class='const'>SangerBarcode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>prefix:</span> <span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span> <span class='label'>number:</span> <span class='id identifier rubyid_short_barcode'>short_barcode</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -318,7 +318,7 @@ Raises InvalidBarcode if the barcode isn&#39;t 12-13 digits long</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Oct 27 16:21:40 2016 by
+  Generated on Mon Oct 31 13:43:54 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.1).
 </div>

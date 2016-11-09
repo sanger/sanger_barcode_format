@@ -1,8 +1,8 @@
-require 'sanger_barcodeable'
+require 'sanger_barcode_format'
 require 'spec_helper'
 
 shared_examples_for 'a modern barcode' do
-  subject { SangerBarcodeable::SangerBarcode }
+  subject { SBCF::SangerBarcode }
 
   it 'can freely convert between them using the new models' do
     subject.from_human(human_full).human_barcode.should eq(human_full)
@@ -14,7 +14,7 @@ shared_examples_for 'a modern barcode' do
   end
 end
 
-describe SangerBarcodeable::SangerBarcode do
+describe SBCF::SangerBarcode do
   context 'with valid parameters' do
     let(:human_prefix) { 'PR' }
     let(:human_checksum) { 'K' }

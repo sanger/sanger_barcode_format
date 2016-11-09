@@ -1,4 +1,4 @@
-module SangerBarcodeable
+module SBCF
   # Provide class methods to assist with creation of barcodes from
   # Different formats
   module Builders
