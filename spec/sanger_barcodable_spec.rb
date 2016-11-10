@@ -4,12 +4,35 @@ require 'spec_helper'
 shared_examples_for 'a modern barcode' do
   subject { SBCF::SangerBarcode }
 
-  it 'can freely convert between them using the new models' do
+  it 'can convert human_full to human_full' do
     subject.from_human(human_full).human_barcode.should eq(human_full)
+  end
+
+  it 'can convert human_full to ean13' do
     subject.from_human(human_full).machine_barcode.should eq(ean13)
+  end
+
+  it 'can convert human_short to human_full' do
+    subject.from_human(human_short).human_barcode.should eq(human_full)
+  end
+
+  it 'can convert human_short to ean13' do
+    subject.from_human(human_short).machine_barcode.should eq(ean13)
+  end
+
+  it 'can convert ean13 to human_full' do
     subject.from_machine(ean13).human_barcode.should eq(human_full)
+  end
+
+  it 'can convert ean13 to ean13' do
     subject.from_machine(ean13).machine_barcode.should eq(ean13)
+  end
+
+  it 'can convert prefix and number to human_full' do
     subject.from_prefix_and_number(human_prefix, short_barcode).human_barcode.should eq(human_full)
+  end
+
+  it 'can convert prefix and number to ean13' do
     subject.from_prefix_and_number(human_prefix, short_barcode).machine_barcode.should eq(ean13)
   end
 end
@@ -19,6 +42,7 @@ describe SBCF::SangerBarcode do
     let(:human_prefix) { 'PR' }
     let(:human_checksum) { 'K' }
     let(:human_full) { 'PR1234K' }
+    let(:human_short) { 'PR1234' }
     let(:short_barcode) { 1234 }
 
     let(:machine_prefix_s) { '450' }
@@ -35,6 +59,7 @@ describe SBCF::SangerBarcode do
     let(:human_prefix) { 'BD' }
     let(:human_checksum) { 'P' }
     let(:human_full) { 'BD1P' }
+    let(:human_short) { 'BD1' }
     let(:short_barcode) { 1 }
 
     let(:machine_prefix_s) { '058' }

@@ -155,7 +155,7 @@ module SBCF
 
       self.prefix = match[:prefix]
       self.number = match[:number]
-      self.checksum = match[:checksum] if match[:checksum]
+      self.checksum = match[:checksum] unless match[:checksum].empty?
     end
 
     def calculate_ean13(code)
