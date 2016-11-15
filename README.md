@@ -40,7 +40,7 @@ Or install it yourself as:
     $ gem install sanger_barcode_format
 
 ## Usage
-``
+```ruby
   # Using builders
   barcode = SBCF::SangerBarcode.from_human('DN12345R')
   barcode = SBCF::SangerBarcode.from_machine(4500101234757)
@@ -60,7 +60,7 @@ Or install it yourself as:
   barcode = SBCF::SangerBarcode.new(machine_barcode: 4500001234757)
   barcode.prefix.human # => 'PR'
   barcode.checksum.human # => 'K'
-``
+```
 
 ## LegacyMethods
 A number of legacy method are provided in the module
