@@ -153,4 +153,12 @@ describe SBCF::LegacyMethods do
       end.to raise_error ArgumentError
     end
   end
+
+  it 'number_to_human returns nil with nil input' do
+    expect(subject.number_to_human(nil)).to be_nil
+  end
+
+  it 'number_to_human returns nil with blank input' do
+    expect(subject.number_to_human('')).to be_nil
+  end
 end

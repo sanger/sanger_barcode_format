@@ -21,11 +21,12 @@ module SBCF
       [bc.prefix.human, bc.number.to_s, bc.checksum.human]
     end
 
-    # Extracts a barcode number form a machine readable barcoder
+    # Extracts a barcode number from a machine readable barcode
     # @deprecated Use SBCF::SangerBarcode.from_machine(machine_barcode).number instead
     # @param [String] machine_barcode the machine readable barcode (eg. 4500001234757)
     # @return [String] The barcode number eg. 1234
     def number_to_human(machine_barcode)
+      return nil if machine_barcode.nil?
       number = SBCF::SangerBarcode.from_machine(machine_barcode).number
       number && number.to_s
     end
@@ -40,10 +41,24 @@ module SBCF
       barcode.prefix.human
     end
 
+    #
+    # Convert a three digit machine prefix into a human readable two character prefix
+    # eg. 122 into DN
+    # @deprecated
+    # @param [Integer] prefix The three digit integer at the beginning of the barcode. eg. 122
+    # @return [String] The two character representation of the prefix eg. 'DN'
+    #
     def prefix_to_human(prefix)
       Prefix.from_machine(prefix).human
     end
 
+    #
+    # Converts a full human barcode into an EAN13
+    #
+    # @param [String] human_barcode A full human readable barcode. eg. 'PR1234K'
+    #
+    # @return [Integer] An integer representation of the EAN13 barcode. eg. 4500001234757
+    #
     def human_to_machine_barcode(human_barcode)
       bc = SBCF::SangerBarcode.from_human(human_barcode)
       unless bc.valid?
@@ -52,15 +67,29 @@ module SBCF
       bc.machine_barcode
     end
 
+    #
+    # Converts the machine readable EAN13 into the human readable form
+    # eg. barcode_to_human(4500001234757) => 'PR1234K'
+    #
+    # @param [Integer] code An integer representation of the EAN13 barcode. eg. 4500001234757
+    #
+    # @return [String]  A full human readable barcode. eg. 'PR1234K'
+    #
     def barcode_to_human(code)
       SBCF::SangerBarcode.from_machine(code).human_barcode
     end
 
-    # We disable the SnakeCase check here as this method is intended to support
-    # legacy code.
-    def check_EAN(code) # rubocop:disable Style/MethodName
+    #
+    # Check that the ean checksum of the provided EAN13 barcoe is correct.
+    #
+    # @param [Int] code An integer representation of the EAN13 barcode. eg. 4500001234757
+    #
+    # @return [Bool] returns true if the checksum is correct
+    #
+    def check_ean(code)
       SBCF::SangerBarcode.from_machine(code).check_ean
     end
+    alias check_EAN check_ean
 
     # Returns the Human barcode or raises an InvalidBarcode exception if there is a problem.  The barcode is
     # considered invalid if it does not translate to a Human barcode or, when the optional +prefix+ is specified,
@@ -74,10 +103,26 @@ module SBCF
       barcode.human_barcode
     end
 
+    #
+    # Returns an EAN13 barcode for the given prefix and number
+    #
+    # @param [String] human_prefix The two character human readable prefix. eg 'PR'
+    # @param [Int] number The 1-7 digit barcode number. eg. 1234
+    #
+    # @return [Int] An integer representation of the EAN13 barcode. eg. 4500001234757
+    #
     def calculate_barcode(human_prefix, number)
       SangerBarcode.new(prefix: human_prefix, number: number).machine_barcode
     end
 
+    #
+    # Returns the human redable checksum for the given prefix and number
+    #
+    # @param [String] human_prefix The two character human readable prefix. eg 'PR'
+    # @param [Int] number The 1-7 digit barcode number. eg. 1234
+    #
+    # @return [String] The single character internal checksum. eg. 'K'
+    #
     def calculate_checksum(human_prefix, number)
       SangerBarcode.new(prefix: human_prefix, number: number).checksum.human
     end
