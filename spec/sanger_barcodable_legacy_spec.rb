@@ -8,50 +8,48 @@ shared_examples_for 'a legacy barcode' do
   let(:split_human_barcode) { [human_prefix, short_barcode.to_s, human_checksum] }
 
   it 'calculates the full barcode' do
-    subject.calculate_barcode(human_prefix, short_barcode).should eq(ean13)
+    expect(subject.calculate_barcode(human_prefix, short_barcode)).to eq(ean13)
   end
 
   it 'calculates a checksum' do
-    subject.calculate_checksum(human_prefix, short_barcode).should eq(human_checksum)
+    expect(subject.calculate_checksum(human_prefix, short_barcode)).to eq(human_checksum)
   end
 
   it 'splits a barcode into its components' do
     # Seems wrong, why is machine prefix a string, but the rest integers?
-    subject.split_barcode(ean13).should eq(split_barcode)
+    expect(subject.split_barcode(ean13)).to eq(split_barcode)
   end
 
   it 'splits a human barcode into its components' do
-    subject.split_human_barcode(human_full).should eq(split_human_barcode)
+    expect(subject.split_human_barcode(human_full)).to eq(split_human_barcode)
   end
 
   it 'converts machine_barcodes to human' do
     # This method seems badly named to me. Human implies the full 'PR1234K' barcode, not just
     # the short 'barcode' number as stored in the database.
-    subject.number_to_human(ean13).should eq(short_barcode.to_s)
+    expect(subject.number_to_human(ean13)).to eq(short_barcode.to_s)
   end
 
   it 'gets the human prefix from the ean13 barcode' do
-    subject.prefix_from_barcode(ean13).should eq(human_prefix)
+    expect(subject.prefix_from_barcode(ean13)).to eq(human_prefix)
   end
 
   it 'can convert numeric prefixes to human' do
-    subject.prefix_to_human(machine_prefix_i).should eq(human_prefix)
+    expect(subject.prefix_to_human(machine_prefix_i)).to eq(human_prefix)
   end
 
   it 'can convert between human barcodes and machine barcodes' do
-    subject.human_to_machine_barcode(human_full).should eq(ean13)
-    subject.barcode_to_human(ean13).should eq(human_full)
+    expect(subject.human_to_machine_barcode(human_full)).to eq(ean13)
+    expect(subject.barcode_to_human(ean13)).to eq(human_full)
   end
 
   it 'can convert to human barcodes with a prefix check' do
-    subject.barcode_to_human!(ean13, human_prefix).should eq(human_full)
-    expect do
-      subject.barcode_to_human!(ean13, 'XX')
-    end.to raise_error
+    expect(subject.barcode_to_human!(ean13, human_prefix)).to eq(human_full)
+    expect { subject.barcode_to_human!(ean13, 'XX') }.to raise_error(SBCF::InvalidBarcode)
   end
 
   it 'has a vaild ean13' do
-    subject.check_EAN(ean13).should eq(true)
+    expect(subject.check_EAN(ean13)).to eq(true)
   end
 end
 
@@ -107,19 +105,15 @@ describe SBCF::LegacyMethods do
     let(:print_checksum) { 7 }
 
     it 'has a invaild ean13' do
-      subject.check_EAN(ean13).should eq(false)
+      expect(subject.check_EAN(ean13)).to eq(false)
     end
 
     it 'will raise on barcode_to_human!' do
-      expect do
-        subject.barcode_to_human!(ean13, 'XX')
-      end.to raise_error
+      expect { subject.barcode_to_human!(ean13, 'XX') }.to raise_error(SBCF::InvalidBarcode)
     end
 
     it 'will raise on human_to_machine_barcode' do
-      expect do
-        subject.human_to_machine_barcode(human_full)
-      end.to raise_error, SBCF::InvalidBarcode
+      expect { subject.human_to_machine_barcode(human_full) }.to raise_error(SBCF::InvalidBarcode)
     end
   end
 

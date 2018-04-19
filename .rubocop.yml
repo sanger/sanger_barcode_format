@@ -1,15 +1,6 @@
 inherit_from: .rubocop_todo.yml
 AllCops:
   TargetRubyVersion: 2.1
-  Include:
-    - Rakefile
-    - config.ru
-    - lib/**/*.rake
-# The cop is meant to enforce conventions regarding variables containing numbers
-# However in 0.43.0 it is bugged. Both changed on master and disabled by default
-# The exclusions don't even get added to the rubocop_todo properly!
-Style/VariableNumber:
-  Enabled: false
 # Enforces 1234565789 as 123_456_789 however this feels completly
 # inappropriate when dealing with barcodes.
 Style/NumericLiterals:
@@ -19,3 +10,8 @@ Metrics/LineLength:
 Style/Documentation:
   Exclude:
     - 'spec/**/*'
+Metrics/BlockLength:
+  ExcludedMethods:
+    - describe
+    - shared_examples
+    - shared_examples_for

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: SBCF
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "SBCF";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">SBCF</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: SBCF
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/sanger_barcode_format.rb<span class="defines">,<br />
+  lib/sanger_barcode_format/prefix.rb,<br /> lib/sanger_barcode_format/version.rb,<br /> lib/sanger_barcode_format/builders.rb,<br /> lib/sanger_barcode_format/checksum.rb,<br /> lib/sanger_barcode_format/constants.rb,<br /> lib/sanger_barcode_format/legacy_methods.rb,<br /> lib/sanger_barcode_format/sanger_barcode.rb,<br /> lib/sanger_barcode_format/exception_classes.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Constant for namespacing, see README.md or SangerBarcode for documentation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="SBCF/Builders.html" title="SBCF::Builders (module)">Builders</a></span>, <span class='object_link'><a href="SBCF/LegacyMethods.html" title="SBCF::LegacyMethods (module)">LegacyMethods</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="SBCF/Checksum.html" title="SBCF::Checksum (class)">Checksum</a></span>, <span class='object_link'><a href="SBCF/Prefix.html" title="SBCF::Prefix (class)">Prefix</a></span>, <span class='object_link'><a href="SBCF/SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  <dl class="constants">
+    
+      <dt id="VERSION-constant" class="">VERSION =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Version number</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.0.3</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+    
+      <dt id="ASCII_OFFSET-constant" class="">ASCII_OFFSET =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Subtracted from prefixes byte values during conversion to numbers Results
+in A having a value of 1</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='int'>64</span></pre></dd>
+    
+      <dt id="PREFIX_BASE-constant" class="">PREFIX_BASE =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Used in calculating the prefix. Multiplies the first character in our two
+byte prefix essentially defining our base. Note: The use of base27 results
+in a two digit increase between AZ and BA. This behaviour was in the
+original implementation and has been maintained for reasons of
+compatibility. I am not aware of the original reasons for the decision.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='int'>27</span></pre></dd>
+    
+      <dt id="PREFIX_LENGTH-constant" class="">PREFIX_LENGTH =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>The digit length of the numeric encoded checksum</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='int'>3</span></pre></dd>
+    
+      <dt id="NUMBER_LENGTH-constant" class="">NUMBER_LENGTH =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>The digit length of the unique barcode number</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='int'>7</span></pre></dd>
+    
+      <dt id="CHECKSUM_LENGTH-constant" class="">CHECKSUM_LENGTH =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>The digit length of the internal checksum</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='int'>2</span></pre></dd>
+    
+      <dt id="INTERNAL_LENGTH-constant" class="">INTERNAL_LENGTH =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>The length of the internally generated portion of the barcode This ignores
+the print checksum which is internal to the ean13 standard</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='const'><span class='object_link'><a href="#PREFIX_LENGTH-constant" title="SBCF::PREFIX_LENGTH (constant)">PREFIX_LENGTH</a></span></span> <span class='op'>+</span> <span class='const'><span class='object_link'><a href="#NUMBER_LENGTH-constant" title="SBCF::NUMBER_LENGTH (constant)">NUMBER_LENGTH</a></span></span> <span class='op'>+</span> <span class='const'><span class='object_link'><a href="#CHECKSUM_LENGTH-constant" title="SBCF::CHECKSUM_LENGTH (constant)">CHECKSUM_LENGTH</a></span></span></pre></dd>
+    
+      <dt id="CHECKSUM_ASCII_OFFSET-constant" class="">CHECKSUM_ASCII_OFFSET =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>The checksum uses a 0 indexed checksum</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='int'>65</span></pre></dd>
+    
+      <dt id="HUMAN_BARCODE_FORMAT-constant" class="">HUMAN_BARCODE_FORMAT =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex to match human readable barcodes eg. PR1234K Matches 1: prefix, 2:
+number, 3: checksum/suffix (optional)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?&lt;prefix&gt;[A-Z]{2})(?&lt;number&gt;\d{1,7})(?&lt;checksum&gt;[A-Z]{0,1}\z)</span><span class='regexp_end'>/</span></span></pre></dd>
+    
+      <dt id="MACHINE_BARCODE_FORMAT-constant" class="">MACHINE_BARCODE_FORMAT =
+        <div class="docstring">
+  <div class="discussion">
+    
+<p>Regex to match the full ean13 barcode, including all checksums The { 2,3 }
+prefix matcher ensures that any barcodes beginning with zero are correctly
+parsed, even if the zero is stripped. Matches 1: Prefix, 2: number 3:
+suffix 4: ean</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(\d{2,3})(\d{7})(\d{2})(\d{1})\z</span><span class='regexp_end'>/</span></span></pre></dd>
+    
+      <dt id="BarcodeError-constant" class="">BarcodeError =
+        
+      </dt>
+      <dd><pre class="code"><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>StandardError</span><span class='rparen'>)</span></pre></dd>
+    
+      <dt id="InvalidBarcode-constant" class="">InvalidBarcode =
+        
+      </dt>
+      <dd><pre class="code"><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#BarcodeError-constant" title="SBCF::BarcodeError (constant)">BarcodeError</a></span></span><span class='rparen'>)</span></pre></dd>
+    
+      <dt id="ChecksumRequired-constant" class="">ChecksumRequired =
+        
+      </dt>
+      <dd><pre class="code"><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#BarcodeError-constant" title="SBCF::BarcodeError (constant)">BarcodeError</a></span></span><span class='rparen'>)</span></pre></dd>
+    
+      <dt id="InvalidBarcodeOperation-constant" class="">InvalidBarcodeOperation =
+        
+      </dt>
+      <dd><pre class="code"><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="#BarcodeError-constant" title="SBCF::BarcodeError (constant)">BarcodeError</a></span></span><span class='rparen'>)</span></pre></dd>
+    
+  </dl>
+
+
+
+
+
+
+
+
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Apr 19 12:51:32 2018 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.12 (ruby-2.4.1).
+</div>
+
+    </div>
+  </body>
+</html>

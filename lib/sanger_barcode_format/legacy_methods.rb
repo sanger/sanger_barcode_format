@@ -5,7 +5,7 @@ module SBCF
     # Returns an array of [machine_prefix,number,machine_checksum]
     # You are encouraged to use the prefix, number and checksum methods instead
     # @deprecated You are encouraged to use the prefix, number and checksum methods instead
-    # @param [String] code Machine readable barcode
+    # @param [String] machine_barcode Machine readable barcode
     # @return [Array] array of [machine_prefix:string, number:int, checksum:string]
     def split_barcode(machine_barcode)
       bc = SBCF::SangerBarcode.from_machine(machine_barcode)
@@ -61,9 +61,7 @@ module SBCF
     #
     def human_to_machine_barcode(human_barcode)
       bc = SBCF::SangerBarcode.from_human(human_barcode)
-      unless bc.valid?
-        raise InvalidBarcode, 'The human readable barcode was invalid, perhaps it was mistyped?'
-      end
+      raise InvalidBarcode, 'The human readable barcode was invalid, perhaps it was mistyped?' unless bc.valid?
       bc.machine_barcode
     end
 

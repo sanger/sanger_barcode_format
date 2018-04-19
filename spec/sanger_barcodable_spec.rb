@@ -1,39 +1,81 @@
 require 'sanger_barcode_format'
 require 'spec_helper'
 
+shared_examples_for 'a valid SangerBarcode instance' do
+  it '#human_full returns the full human barcode' do
+    expect(subject.human_barcode).to eq(human_full)
+  end
+  it '#machine_barcode returns the ean13 barcode' do
+    expect(subject.machine_barcode).to eq(ean13)
+  end
+  it '#valid? is true' do
+    expect(subject).to be_valid
+  end
+end
+
+shared_examples_for 'an invalid SangerBarcode instance' do
+  subject { SBCF::SangerBarcode }
+
+  it 'is invalid from human' do
+    expect(subject.from_human(human_full)).to_not be_valid
+  end
+
+  it 'it is invalid from machine' do
+    expect(subject.from_machine(ean13)).to_not be_valid
+  end
+end
+
 shared_examples_for 'a modern barcode' do
   subject { SBCF::SangerBarcode }
 
-  it 'can convert human_full to human_full' do
-    subject.from_human(human_full).human_barcode.should eq(human_full)
+  describe '::from_human' do
+    subject { described_class.from_human(input) }
+
+    context 'with a full human barcode' do
+      let(:input) { human_full }
+      it_behaves_like 'a valid SangerBarcode instance'
+    end
+
+    context 'with a short human barcode' do
+      let(:input) { human_short }
+      it_behaves_like 'a valid SangerBarcode instance'
+    end
   end
 
-  it 'can convert human_full to ean13' do
-    subject.from_human(human_full).machine_barcode.should eq(ean13)
+  describe '::from_machine' do
+    subject { described_class.from_machine(input) }
+
+    context 'with an ean13' do
+      let(:input) { ean13 }
+      it_behaves_like 'a valid SangerBarcode instance'
+    end
   end
 
-  it 'can convert human_short to human_full' do
-    subject.from_human(human_short).human_barcode.should eq(human_full)
+  describe '::from_user_input' do
+    subject { described_class.from_user_input(input) }
+
+    context 'with a full human barcode' do
+      let(:input) { human_full }
+      it_behaves_like 'a valid SangerBarcode instance'
+    end
+
+    context 'with a short human barcode' do
+      let(:input) { human_short }
+      it_behaves_like 'a valid SangerBarcode instance'
+    end
+
+    context 'with an ean13' do
+      let(:input) { ean13 }
+      it_behaves_like 'a valid SangerBarcode instance'
+    end
   end
 
-  it 'can convert human_short to ean13' do
-    subject.from_human(human_short).machine_barcode.should eq(ean13)
-  end
-
-  it 'can convert ean13 to human_full' do
-    subject.from_machine(ean13).human_barcode.should eq(human_full)
-  end
-
-  it 'can convert ean13 to ean13' do
-    subject.from_machine(ean13).machine_barcode.should eq(ean13)
-  end
-
-  it 'can convert prefix and number to human_full' do
-    subject.from_prefix_and_number(human_prefix, short_barcode).human_barcode.should eq(human_full)
-  end
-
-  it 'can convert prefix and number to ean13' do
-    subject.from_prefix_and_number(human_prefix, short_barcode).machine_barcode.should eq(ean13)
+  describe '::from_prefix_and_number' do
+    subject { described_class.from_prefix_and_number(*input) }
+    context 'with a prefix and number' do
+      let(:input) { [human_prefix, short_barcode] }
+      it_behaves_like 'a valid SangerBarcode instance'
+    end
   end
 end
 
@@ -83,10 +125,16 @@ describe SBCF::SangerBarcode do
     let(:pre_ean13) { 450010123475 }
     let(:machine_checksum) { 75 }
     let(:print_checksum) { 7 }
+
+    it_behaves_like 'an invalid SangerBarcode instance'
   end
 
   context 'which is too long' do
     let(:human_prefix) { 'PR' }
+    let(:human_full) { 'PR12345678' }
+    let(:ean13) { 4500101234757 }
+
     let(:short_barcode) { 12345678 }
+    it_behaves_like 'an invalid SangerBarcode instance'
   end
 end

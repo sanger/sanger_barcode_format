@@ -24,8 +24,9 @@ module SBCF
   # checksum is included in the output of this gem and does not need to be
   # recalculated .
   class SangerBarcode
-    attr_reader :prefix, :number, :checksum
+    attr_reader :prefix, :number
     extend Builders
+    # rubocop:disable Metrics/ParameterLists
     # Create a new barcode object.
     # Either:
     # - Provide a prefix and number
@@ -53,6 +54,7 @@ module SBCF
       @checksum_required = checksum_required
       self.human_barcode = human_barcode if human_barcode
     end
+    # rubocop:enable Metrics/ParameterLists
 
     # Returns the machine readable ean13, or nil if no barcode could be generated
     #
@@ -138,7 +140,6 @@ module SBCF
       @machine_barcode = machine_barcode.to_i
       match = MACHINE_BARCODE_FORMAT.match(machine_barcode.to_s)
       match && set_from_machine_components(*match)
-      machine_barcode
     end
 
     def set_from_machine_components(_full, prefix, number, _checksum, _check)
@@ -148,11 +149,10 @@ module SBCF
 
     def human_barcode=(human_barcode)
       match = HUMAN_BARCODE_FORMAT.match(human_barcode)
-
+      return unless match
       if @checksum_required && match[:checksum].nil?
         raise ChecksumRequired, 'You must supply a complete barcode, including the final letter (eg. DN12345R).'
       end
-
       self.prefix = match[:prefix]
       self.number = match[:number]
       self.checksum = match[:checksum] unless match[:checksum].empty?

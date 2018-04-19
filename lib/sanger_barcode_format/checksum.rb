@@ -65,7 +65,7 @@ module SBCF
     # Checsums match if their value is the same, regardless of how they were
     # calculated.
     #
-    # @param [Checksum] other_checkum the checksum with which to compare
+    # @param [Checksum] other the checksum with which to compare
     # @return [Bool] description tru is the checsums match, false otherwise
     def ==(other)
       raise ArgumentError, 'Can only compare a checksum with a checksum' unless other.is_a?(Checksum)

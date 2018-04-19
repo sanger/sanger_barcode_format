@@ -11,13 +11,38 @@ module SBCF
     end
 
     # Provide a full 13 digit ean13 barcode and returns a SangerBarcode object
-    # Raises InvalidBarcode if the barcode isn't 12-13 digits long
     def from_machine(machine_barcode)
       SangerBarcode.new(machine_barcode: machine_barcode)
     end
 
+    #
+    # Generate an ABCF::SangerBarcode form a checksum and number
+    # @param human_prefix [String] Two character prefix eg. DN
+    # @param short_barcode [String] The 1-7 digit barcode number
+    #
+    # @return [SangerBarcode] A barcode object with the prefix and number provided
     def from_prefix_and_number(human_prefix, short_barcode)
       SangerBarcode.new(prefix: human_prefix, number: short_barcode)
+    end
+
+    #
+    # Pass in a string that is either
+    # - An ean13 barcode
+    # - A human barcode with checksum
+    # - A human barcode without checksum
+    # @param input [String] A sanger format barcode, either in the human readable, or ean13 form
+    #
+    # @return [SangerBarcode] A barcode object corresponding to the provided text, or an invalid barcode
+    #                         if the format does not match
+    def from_user_input(input)
+      case input.to_s
+      when HUMAN_BARCODE_FORMAT
+        SangerBarcode.new(human_barcode: input)
+      when MACHINE_BARCODE_FORMAT
+        SangerBarcode.new(machine_barcode: input)
+      else
+        SangerBarcode.new(human_barcode: '')
+      end
     end
   end
 end
