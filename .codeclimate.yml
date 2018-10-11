@@ -1,0 +1,12 @@
+version: "2"
+exclude_patterns:
+  - "doc/"
+plugins:
+  fixme:
+    enabled: true
+  reek:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  flog:
+    enabled: true
