@@ -1,4 +1,3 @@
-inherit_from: .rubocop_todo.yml
 AllCops:
   TargetRubyVersion: 2.1
 # Enforces 1234565789 as 123_456_789 however this feels completly

@@ -18,6 +18,11 @@ module SBCF
       new(machine_prefix: machine_prefix)
     end
 
+    def self.from_input(prefix)
+      return prefix if prefix.is_a?(Prefix)
+      Prefix.from_human(prefix)
+    end
+
     # Return a new instance of the prefix class, either from the supplier
     # human_prefix or supplief machine_prefix
     #

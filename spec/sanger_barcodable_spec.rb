@@ -2,6 +2,8 @@ require 'sanger_barcode_format'
 require 'spec_helper'
 
 shared_examples_for 'a valid SangerBarcode instance' do
+  let(:other_barcode) { SBCF::SangerBarcode.new(prefix: human_prefix, number: short_barcode) }
+
   it '#human_full returns the full human barcode' do
     expect(subject.human_barcode).to eq(human_full)
   end
@@ -10,6 +12,25 @@ shared_examples_for 'a valid SangerBarcode instance' do
   end
   it '#valid? is true' do
     expect(subject).to be_valid
+  end
+  it 'is equal to equivalent barcodes' do
+    expect(subject).to eq(other_barcode)
+  end
+  # If you want to compare strings, use the match operators, or ~=
+  it 'is not equal to human barcode strings' do
+    expect(subject).not_to eq(human_full)
+  end
+  it 'is not equal to ean13 strings' do
+    expect(subject).not_to eq(ean13)
+  end
+  it 'is =~ to equivalent barcodes' do
+    expect(subject =~ other_barcode).to be true
+  end
+  it 'is =~ to human barcode string' do
+    expect(subject =~ human_full).to be true
+  end
+  it 'is =~ to human ean13 strings' do
+    expect(subject =~ ean13).to be true
   end
 end
 

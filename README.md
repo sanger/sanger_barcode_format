@@ -1,4 +1,6 @@
-CAUTION! This is an early version and may be unstable.
+:warning: This is an early version and may be unstable.
+
+[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](https://www.rubydoc.info/github/sanger/sanger_barcode_format)
 
 # SBCF
 
