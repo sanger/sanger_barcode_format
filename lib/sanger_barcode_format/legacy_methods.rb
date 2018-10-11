@@ -27,6 +27,7 @@ module SBCF
     # @return [String] The barcode number eg. 1234
     def number_to_human(machine_barcode)
       return nil if machine_barcode.nil?
+
       number = SBCF::SangerBarcode.from_machine(machine_barcode).number
       number && number.to_s
     end
@@ -38,6 +39,7 @@ module SBCF
     def prefix_from_barcode(machine_barcode)
       barcode = SBCF::SangerBarcode.from_machine(machine_barcode)
       return nil unless barcode.valid?
+
       barcode.prefix.human
     end
 
@@ -62,6 +64,7 @@ module SBCF
     def human_to_machine_barcode(human_barcode)
       bc = SBCF::SangerBarcode.from_human(human_barcode)
       raise InvalidBarcode, 'The human readable barcode was invalid, perhaps it was mistyped?' unless bc.valid?
+
       bc.machine_barcode
     end
 
@@ -98,6 +101,7 @@ module SBCF
       unless prefix.nil? || (barcode.prefix.human == prefix)
         raise InvalidBarcode, "Barcode #{code} (#{barcode.human_barcode}) does not match prefix #{prefix}"
       end
+
       barcode.human_barcode
     end
 

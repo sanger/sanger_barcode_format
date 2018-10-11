@@ -20,6 +20,7 @@ module SBCF
 
     def self.from_input(prefix)
       return prefix if prefix.is_a?(Prefix)
+
       Prefix.from_human(prefix)
     end
 
@@ -31,6 +32,7 @@ module SBCF
     # @return [Prefix] A new instance of the prefix class
     def initialize(human_prefix: nil, machine_prefix: nil)
       raise BarcodeError, 'Must supply a human or machine prefix' unless human_prefix || machine_prefix
+
       @human = human_prefix
       @machine = machine_prefix.to_i if machine_prefix
     end

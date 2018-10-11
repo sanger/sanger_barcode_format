@@ -17,7 +17,8 @@ Gem::Specification.new do |gem|
   gem.version       = SBCF::VERSION
 
   gem.add_development_dependency('rake')
-  gem.add_development_dependency('rspec', '~>3.7')
-  gem.add_development_dependency('rubocop', '~>0.55')
-  gem.add_development_dependency('yard', '~>0.9')
+  gem.add_development_dependency('rspec')
+  gem.add_development_dependency('simplecov')
+  gem.add_development_dependency('rubocop')
+  gem.add_development_dependency('yard')
 end

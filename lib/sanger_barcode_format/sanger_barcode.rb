@@ -122,6 +122,7 @@ module SBCF
     # @return [Boolean] true is barcodes match, false otherwise
     def ==(other)
       return false unless other.is_a?(SangerBarcode)
+
       human_barcode == other.human_barcode
     end
 
@@ -144,6 +145,7 @@ module SBCF
 
     def number=(number)
       raise ArgumentError, "Number : #{number} to big to generate a barcode." if number.to_s.size > 7
+
       @number = number && number.to_i
     end
 
@@ -173,6 +175,7 @@ module SBCF
       if @checksum_required && match[:checksum].nil?
         raise ChecksumRequired, 'You must supply a complete barcode, including the final letter (eg. DN12345R).'
       end
+
       self.prefix = match[:prefix]
       self.number = match[:number]
       self.checksum = match[:checksum] unless match[:checksum].empty?
