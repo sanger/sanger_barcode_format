@@ -158,4 +158,43 @@ describe SBCF::SangerBarcode do
     let(:short_barcode) { 12345678 }
     it_behaves_like 'an invalid SangerBarcode instance'
   end
+
+  context 'handling empty and invalid input' do
+    let(:barcode_from_empty_input) { described_class.from_user_input(empty_input) }
+    let(:barcode_from_invalid_input) { described_class.from_user_input(invalid_input) }
+    let(:empty_input) { '' }
+    let(:invalid_input) { 'NOT_VALID' }
+
+    # Empty barcode are NOT treated as a special case of invalid barcode.
+    # While there are situations in which we may be matching 'no barcode' to
+    # 'no barcode' (such as in bed verification, ensuring empty beds) this situation
+    # should be handled explicitly.
+    # The SBCF::EmptyBarcode is provided for this situation
+    context 'an empty barcode' do
+      it 'doesn\'t equal empty input' do
+        expect(barcode_from_empty_input).not_to eq barcode_from_empty_input
+      end
+      it '=~ empty input' do
+        expect(barcode_from_empty_input =~ empty_input).to be false
+      end
+      it "doesn't =~ invalid input" do
+        expect(barcode_from_empty_input =~ invalid_input).to be false
+      end
+    end
+
+    context 'an invalid barcode' do
+      it 'doesn\'t equal empty input' do
+        expect(barcode_from_invalid_input).not_to eq barcode_from_empty_input
+      end
+      it 'doesn\'t =~ empty input' do
+        expect(barcode_from_invalid_input =~ empty_input).to be false
+      end
+      it "doesn't =~ invalid input" do
+        expect(barcode_from_invalid_input =~ invalid_input).to be false
+      end
+    end
+  end
+end
+
+describe SBCF::SangerBarcode do
 end

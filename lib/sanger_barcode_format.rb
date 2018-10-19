@@ -5,6 +5,7 @@ require 'sanger_barcode_format/prefix'
 require 'sanger_barcode_format/checksum'
 require 'sanger_barcode_format/ean'
 require 'sanger_barcode_format/sanger_barcode'
+require 'sanger_barcode_format/empty_barcode'
 
 # Constant for namespacing, see README.md or SangerBarcode for
 # documentation

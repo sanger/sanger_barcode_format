@@ -1,6 +1,6 @@
 AllCops:
   TargetRubyVersion: 2.2
-# Enforces 1234565789 as 123_456_789 however this feels completly
+# Enforces 1234565789 as 123_456_789 however this feels completely
 # inappropriate when dealing with barcodes.
 Style/NumericLiterals:
   Enabled: false
@@ -14,3 +14,4 @@ Metrics/BlockLength:
     - describe
     - shared_examples
     - shared_examples_for
+    - context

@@ -121,7 +121,7 @@ module SBCF
     #
     # @return [Boolean] true is barcodes match, false otherwise
     def ==(other)
-      return false unless other.is_a?(SangerBarcode)
+      return false unless other.is_a?(SangerBarcode) && other.valid?
 
       human_barcode == other.human_barcode
     end
