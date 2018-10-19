@@ -8,6 +8,8 @@ module SBCF
   # unexpectedly.
   #
   class EmptyBarcode
+    # String representation
+    STRING_REP = '[empty]'.freeze
     #
     # Returns true only if passed an empty string or nil
     # @param other [nil, String] User input to validate if its blank
@@ -24,6 +26,14 @@ module SBCF
     # @return [Boolean] True is an empty barcode
     def ==(other)
       other.is_a?(EmptyBarcode)
+    end
+
+    #
+    # Returns a string representation
+    #
+    # @return [String] [empty]
+    def to_s
+      STRING_REP
     end
   end
 end

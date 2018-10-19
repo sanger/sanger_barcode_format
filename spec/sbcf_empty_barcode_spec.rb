@@ -24,4 +24,8 @@ describe SBCF::EmptyBarcode do
   it 'does not match other content' do
     expect(subject =~ 'other').to be false
   end
+
+  it 'converts to the string [empty]' do
+    expect(subject.to_s).to eq('[empty]')
+  end
 end

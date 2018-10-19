@@ -24,6 +24,7 @@ module SBCF
   # checksum is included in the output of this gem and does not need to be
   # recalculated .
   class SangerBarcode
+    INVALID_STRING = '[invalid format]'.freeze
     attr_reader :prefix, :number
     extend Builders
     # rubocop:disable Metrics/ParameterLists
@@ -134,6 +135,16 @@ module SBCF
     def =~(other)
       other_barcode = other.is_a?(SangerBarcode) ? other : SangerBarcode.from_user_input(other)
       self == other_barcode
+    end
+
+    #
+    # Generates a string representation
+    # "human_readable (ean13)" for valid barcodes
+    # [invalid format] for invalid barcodes
+    #
+    # @return [String] String representation of barcode
+    def to_s
+      valid? ? "#{human_barcode} (#{machine_barcode})" : INVALID_STRING
     end
 
     ####### PRIVATE METHODS ###################################################################

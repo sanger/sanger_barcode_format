@@ -32,6 +32,10 @@ shared_examples_for 'a valid SangerBarcode instance' do
   it 'is =~ to human ean13 strings' do
     expect(subject =~ ean13).to be true
   end
+
+  it 'converts to a string' do
+    expect(subject.to_s).to eq("#{human_full} (#{ean13})")
+  end
 end
 
 shared_examples_for 'an invalid SangerBarcode instance' do
@@ -43,6 +47,10 @@ shared_examples_for 'an invalid SangerBarcode instance' do
 
   it 'it is invalid from machine' do
     expect(subject.from_machine(ean13)).to_not be_valid
+  end
+
+  it 'converts to a string' do
+    expect(subject.from_human(human_full).to_s).to eq('[invalid format]')
   end
 end
 
