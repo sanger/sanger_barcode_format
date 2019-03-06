@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sanger_barcode_format (0.1.1)
+    sanger_barcode_format (0.1.2)
 
 GEM
   remote: http://rubygems.org/

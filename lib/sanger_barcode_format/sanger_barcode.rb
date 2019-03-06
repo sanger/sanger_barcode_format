@@ -51,7 +51,7 @@ module SBCF
       self.prefix = prefix
       self.number = number
       self.checksum = checksum
-      self.machine_barcode = machine_barcode.to_i if machine_barcode
+      self.machine_barcode = machine_barcode
       @checksum_required = checksum_required
       self.human_barcode = human_barcode if human_barcode
     end
@@ -170,7 +170,7 @@ module SBCF
     # @param [String||Int] machine_barcode The 13 digit long ean13 barcode
     # @return [String||Int] Returns the input
     def machine_barcode=(machine_barcode)
-      @machine_barcode = machine_barcode.to_i
+      @machine_barcode = machine_barcode && machine_barcode.to_i
       match = MACHINE_BARCODE_FORMAT.match(machine_barcode.to_s)
       match && set_from_machine_components(*match)
     end
