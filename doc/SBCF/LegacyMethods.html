@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: SBCF::LegacyMethods
+  
+    &mdash; Documentation by YARD 0.9.12
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "SBCF::LegacyMethods";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (L)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span>
+     &raquo; 
+    <span class="title">LegacyMethods</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: SBCF::LegacyMethods
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/sanger_barcode_format/legacy_methods.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>These methods are all added to maintain compatibility with the Existing
+sequencescape Barcode API. They will be deprecated over time.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#barcode_to_human-instance_method" title="#barcode_to_human (instance method)">#<strong>barcode_to_human</strong>(code)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts the machine readable EAN13 into the human readable form eg.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#barcode_to_human!-instance_method" title="#barcode_to_human! (instance method)">#<strong>barcode_to_human!</strong>(code, prefix = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the Human barcode or raises an InvalidBarcode exception if there is
+a problem.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#calculate_barcode-instance_method" title="#calculate_barcode (instance method)">#<strong>calculate_barcode</strong>(human_prefix, number)  &#x21d2; Int </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns an EAN13 barcode for the given prefix and number.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#calculate_checksum-instance_method" title="#calculate_checksum (instance method)">#<strong>calculate_checksum</strong>(human_prefix, number)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the human redable checksum for the given prefix and number.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_ean-instance_method" title="#check_ean (instance method)">#<strong>check_ean</strong>(code)  &#x21d2; Bool </a>
+    
+
+    
+      (also: #check_EAN)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Check that the ean checksum of the provided EAN13 barcoe is correct.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#human_to_machine_barcode-instance_method" title="#human_to_machine_barcode (instance method)">#<strong>human_to_machine_barcode</strong>(human_barcode)  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts a full human barcode into an EAN13.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#number_to_human-instance_method" title="#number_to_human (instance method)">#<strong>number_to_human</strong>(machine_barcode)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'>
+<p>Use SBCF::SangerBarcode.from_machine(machine_barcode).number instead</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#prefix_from_barcode-instance_method" title="#prefix_from_barcode (instance method)">#<strong>prefix_from_barcode</strong>(machine_barcode)  &#x21d2; Sting </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'>
+<p>Use SBCF::SangerBarcode.from_machine(machine_barcode).prefix.human instead</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#prefix_to_human-instance_method" title="#prefix_to_human (instance method)">#<strong>prefix_to_human</strong>(prefix)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#split_barcode-instance_method" title="#split_barcode (instance method)">#<strong>split_barcode</strong>(machine_barcode)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'>
+<p>You are encouraged to use the prefix, number and checksum methods instead</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#split_human_barcode-instance_method" title="#split_human_barcode (instance method)">#<strong>split_human_barcode</strong>(code)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'>
+<p>You are encouraged to create and use a SangerBarcode instead</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="barcode_to_human-instance_method">
+  
+    #<strong>barcode_to_human</strong>(code)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts the machine readable EAN13 into the human readable form eg.
+barcode_to_human(4500001234757) =&gt; &#39;PR1234K&#39;</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>code</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An integer representation of the EAN13 barcode. eg. 4500001234757</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A full human readable barcode. eg. &#39;PR1234K&#39;</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 76</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_barcode_to_human'>barcode_to_human</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_machine'><span class='object_link'><a href="Builders.html#from_machine-instance_method" title="SBCF::Builders#from_machine (method)">from_machine</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_human_barcode'>human_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="barcode_to_human!-instance_method">
+  
+    #<strong>barcode_to_human!</strong>(code, prefix = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the Human barcode or raises an InvalidBarcode exception if there is
+a problem.  The barcode is considered invalid if it does not translate to a
+Human barcode or, when the optional <code>prefix</code> is specified, its
+human equivalent does not match.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_barcode_to_human!'>barcode_to_human!</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='comma'>,</span> <span class='id identifier rubyid_prefix'>prefix</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_barcode'>barcode</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_machine'><span class='object_link'><a href="Builders.html#from_machine-instance_method" title="SBCF::Builders#from_machine (method)">from_machine</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>||</span>
+    <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../SBCF.html#InvalidBarcode-constant" title="SBCF::InvalidBarcode (constant)">InvalidBarcode</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Barcode </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_code'>code</span><span class='embexpr_end'>}</span><span class='tstring_content'> appears to be invalid</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_barcode'>barcode</span><span class='period'>.</span><span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span> <span class='op'>==</span> <span class='id identifier rubyid_prefix'>prefix</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../SBCF.html#InvalidBarcode-constant" title="SBCF::InvalidBarcode (constant)">InvalidBarcode</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Barcode </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_code'>code</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_barcode'>barcode</span><span class='period'>.</span><span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='embexpr_end'>}</span><span class='tstring_content'>) does not match prefix </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_prefix'>prefix</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_barcode'>barcode</span><span class='period'>.</span><span class='id identifier rubyid_human_barcode'>human_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="calculate_barcode-instance_method">
+  
+    #<strong>calculate_barcode</strong>(human_prefix, number)  &#x21d2; <tt>Int</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns an EAN13 barcode for the given prefix and number</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>human_prefix</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The two character human readable prefix. eg &#39;PR&#39;</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>number</span>
+      
+      
+        <span class='type'>(<tt>Int</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The 1-7 digit barcode number. eg. 1234</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Int</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An integer representation of the EAN13 barcode. eg. 4500001234757</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_calculate_barcode'>calculate_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span> <span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SangerBarcode.html#initialize-instance_method" title="SBCF::SangerBarcode#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>prefix:</span> <span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span> <span class='label'>number:</span> <span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="calculate_checksum-instance_method">
+  
+    #<strong>calculate_checksum</strong>(human_prefix, number)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the human redable checksum for the given prefix and number</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>human_prefix</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The two character human readable prefix. eg &#39;PR&#39;</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>number</span>
+      
+      
+        <span class='type'>(<tt>Int</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The 1-7 digit barcode number. eg. 1234</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The single character internal checksum. eg. &#39;K&#39;</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_calculate_checksum'>calculate_checksum</span><span class='lparen'>(</span><span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span> <span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SangerBarcode.html#initialize-instance_method" title="SBCF::SangerBarcode#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>prefix:</span> <span class='id identifier rubyid_human_prefix'>human_prefix</span><span class='comma'>,</span> <span class='label'>number:</span> <span class='id identifier rubyid_number'>number</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_checksum'>checksum</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_ean-instance_method">
+  
+    #<strong>check_ean</strong>(code)  &#x21d2; <tt>Bool</tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='check_EAN-instance_method'>check_EAN</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Check that the ean checksum of the provided EAN13 barcoe is correct.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>code</span>
+      
+      
+        <span class='type'>(<tt>Int</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An integer representation of the EAN13 barcode. eg. 4500001234757</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Bool</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>returns true if the checksum is correct</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 87</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_ean'>check_ean</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_machine'><span class='object_link'><a href="Builders.html#from_machine-instance_method" title="SBCF::Builders#from_machine (method)">from_machine</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_check_ean'>check_ean</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="human_to_machine_barcode-instance_method">
+  
+    #<strong>human_to_machine_barcode</strong>(human_barcode)  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts a full human barcode into an EAN13</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>human_barcode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A full human readable barcode. eg. &#39;PR1234K&#39;</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>An integer representation of the EAN13 barcode. eg. 4500001234757</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../SBCF.html#InvalidBarcode-constant" title="SBCF::InvalidBarcode (constant)">InvalidBarcode</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_human_to_machine_barcode'>human_to_machine_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_bc'>bc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_human'><span class='object_link'><a href="Builders.html#from_human-instance_method" title="SBCF::Builders#from_human (method)">from_human</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_human_barcode'>human_barcode</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../SBCF.html#InvalidBarcode-constant" title="SBCF::InvalidBarcode (constant)">InvalidBarcode</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>The human readable barcode was invalid, perhaps it was mistyped?</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span>
+  <span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="number_to_human-instance_method">
+  
+    #<strong>number_to_human</strong>(machine_barcode)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'>
+<p>Use SBCF::SangerBarcode.from_machine(machine_barcode).number instead</p>
+</div></div>
+
+<p>Extracts a barcode number from a machine readable barcode</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>machine_barcode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the machine readable barcode (eg. 4500001234757)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The barcode number eg. 1234</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+28
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 28</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_number_to_human'>number_to_human</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_number'>number</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_machine'><span class='object_link'><a href="Builders.html#from_machine-instance_method" title="SBCF::Builders#from_machine (method)">from_machine</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_number'>number</span>
+  <span class='id identifier rubyid_number'>number</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_number'>number</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prefix_from_barcode-instance_method">
+  
+    #<strong>prefix_from_barcode</strong>(machine_barcode)  &#x21d2; <tt>Sting</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'>
+<p>Use SBCF::SangerBarcode.from_machine(machine_barcode).prefix.human instead</p>
+</div></div>
+
+<p>Returns the human readable prefix from a machine barcode</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>machine_barcode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the machine readable barcode (eg. 4500001234757)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sting</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>human readable prefix, eg. &#39;DN&#39;</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prefix_from_barcode'>prefix_from_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_barcode'>barcode</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_machine'><span class='object_link'><a href="Builders.html#from_machine-instance_method" title="SBCF::Builders#from_machine (method)">from_machine</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_barcode'>barcode</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span>
+  <span class='id identifier rubyid_barcode'>barcode</span><span class='period'>.</span><span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="prefix_to_human-instance_method">
+  
+    #<strong>prefix_to_human</strong>(prefix)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'></div></div>
+
+<p>Convert a three digit machine prefix into a human readable two character
+prefix eg. 122 into DN</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>prefix</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The three digit integer at the beginning of the barcode. eg. 122</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The two character representation of the prefix eg. &#39;DN&#39;</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prefix_to_human'>prefix_to_human</span><span class='lparen'>(</span><span class='id identifier rubyid_prefix'>prefix</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Prefix.html" title="SBCF::Prefix (class)">Prefix</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_machine'><span class='object_link'><a href="Prefix.html#from_machine-class_method" title="SBCF::Prefix.from_machine (method)">from_machine</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_prefix'>prefix</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_human'><span class='object_link'><a href="Prefix.html#human-instance_method" title="SBCF::Prefix#human (method)">human</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="split_barcode-instance_method">
+  
+    #<strong>split_barcode</strong>(machine_barcode)  &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'>
+<p>You are encouraged to use the prefix, number and checksum methods instead</p>
+</div></div>
+
+<p>Returns an array of [machine_prefix,number,machine_checksum] You are
+encouraged to use the prefix, number and checksum methods instead</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>machine_barcode</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Machine readable barcode</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>array of [machine_prefix:string, number:int, checksum:string]</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_split_barcode'>split_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_bc'>bc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_machine'><span class='object_link'><a href="Builders.html#from_machine-instance_method" title="SBCF::Builders#from_machine (method)">from_machine</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_machine_barcode'>machine_barcode</span><span class='rparen'>)</span>
+  <span class='lbracket'>[</span><span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_machine_s'>machine_s</span><span class='comma'>,</span> <span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_number'>number</span><span class='comma'>,</span> <span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_checksum'>checksum</span><span class='period'>.</span><span class='id identifier rubyid_machine'>machine</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="split_human_barcode-instance_method">
+  
+    #<strong>split_human_barcode</strong>(code)  &#x21d2; <tt>Array</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'>
+<p>You are encouraged to create and use a SangerBarcode instead</p>
+</div></div>
+
+<p>Returns an array of [human_prefix,number,human_checksum]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>code</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Human readable barcode</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>array of [human_prefix:string, number:string, checksum:string]</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sanger_barcode_format/legacy_methods.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_split_human_barcode'>split_human_barcode</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_bc'>bc</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../SBCF.html" title="SBCF (module)">SBCF</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SangerBarcode.html" title="SBCF::SangerBarcode (class)">SangerBarcode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_human'><span class='object_link'><a href="Builders.html#from_human-instance_method" title="SBCF::Builders#from_human (method)">from_human</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='rparen'>)</span>
+  <span class='lbracket'>[</span><span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_prefix'>prefix</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span><span class='comma'>,</span> <span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_number'>number</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_bc'>bc</span><span class='period'>.</span><span class='id identifier rubyid_checksum'>checksum</span><span class='period'>.</span><span class='id identifier rubyid_human'>human</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu Apr 19 12:51:32 2018 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.12 (ruby-2.4.1).
+</div>
+
+    </div>
+  </body>
+</html>

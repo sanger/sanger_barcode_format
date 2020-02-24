@@ -43,6 +43,7 @@ module SBCF
     # @return [Checksum] A new checksum object
     def initialize(human_checksum: nil, machine_checksum: nil)
       raise BarcodeError, 'Must supply a human or machine checksum' unless human_checksum || machine_checksum
+
       @human = human_checksum
       @machine = machine_checksum.to_i if machine_checksum
     end
@@ -65,10 +66,11 @@ module SBCF
     # Checsums match if their value is the same, regardless of how they were
     # calculated.
     #
-    # @param [Checksum] other_checkum the checksum with which to compare
+    # @param [Checksum] other the checksum with which to compare
     # @return [Bool] description tru is the checsums match, false otherwise
     def ==(other)
       raise ArgumentError, 'Can only compare a checksum with a checksum' unless other.is_a?(Checksum)
+
       human == other.human
     end
   end

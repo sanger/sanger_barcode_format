@@ -24,8 +24,10 @@ module SBCF
   # checksum is included in the output of this gem and does not need to be
   # recalculated .
   class SangerBarcode
-    attr_reader :prefix, :number, :checksum
+    INVALID_STRING = '[invalid format]'.freeze
+    attr_reader :prefix, :number
     extend Builders
+    # rubocop:disable Metrics/ParameterLists
     # Create a new barcode object.
     # Either:
     # - Provide a prefix and number
@@ -49,10 +51,11 @@ module SBCF
       self.prefix = prefix
       self.number = number
       self.checksum = checksum
-      self.machine_barcode = machine_barcode.to_i if machine_barcode
+      self.machine_barcode = machine_barcode
       @checksum_required = checksum_required
       self.human_barcode = human_barcode if human_barcode
     end
+    # rubocop:enable Metrics/ParameterLists
 
     # Returns the machine readable ean13, or nil if no barcode could be generated
     #
@@ -109,19 +112,51 @@ module SBCF
     def check_ean
       # the EAN checksum is calculated so that the EAN of the code with checksum added is 0
       # except the new column (the checksum) start with a different weight (so the previous column keep the same weight)
-      @machine_barcode.nil? || calculate_ean(@machine_barcode, 1).zero?
+      @machine_barcode.nil? || Ean.validate?(@machine_barcode)
+    end
+
+    #
+    # Checks that two SBCF::SangerBarcode are the same. Returns true if they represent
+    # identical barcodes. Use =~  if you want to also match strings
+    # @param other [SBCF::SangerBarcode] The other barcode to match with
+    #
+    # @return [Boolean] true is barcodes match, false otherwise
+    def ==(other)
+      return false unless other.is_a?(SangerBarcode) && other.valid?
+
+      human_barcode == other.human_barcode
+    end
+
+    #
+    # Checks that other matches the format
+    # @param other [SBCF::SangerBarcode, String] The barcode or string to match
+    #
+    # @return [Boolean] true is barcodes match, false otherwise
+    def =~(other)
+      other_barcode = other.is_a?(SangerBarcode) ? other : SangerBarcode.from_user_input(other)
+      self == other_barcode
+    end
+
+    #
+    # Generates a string representation
+    # "human_readable (ean13)" for valid barcodes
+    # [invalid format] for invalid barcodes
+    #
+    # @return [String] String representation of barcode
+    def to_s
+      valid? ? "#{human_barcode} (#{machine_barcode})" : INVALID_STRING
     end
 
     ####### PRIVATE METHODS ###################################################################
     private
 
     def prefix=(prefix)
-      return if prefix.nil?
-      @prefix = prefix.is_a?(Prefix) ? prefix : Prefix.from_human(prefix)
+      @prefix = prefix && Prefix.from_input(prefix)
     end
 
     def number=(number)
       raise ArgumentError, "Number : #{number} to big to generate a barcode." if number.to_s.size > 7
+
       @number = number && number.to_i
     end
 
@@ -135,10 +170,9 @@ module SBCF
     # @param [String||Int] machine_barcode The 13 digit long ean13 barcode
     # @return [String||Int] Returns the input
     def machine_barcode=(machine_barcode)
-      @machine_barcode = machine_barcode.to_i
+      @machine_barcode = machine_barcode && machine_barcode.to_i
       match = MACHINE_BARCODE_FORMAT.match(machine_barcode.to_s)
       match && set_from_machine_components(*match)
-      machine_barcode
     end
 
     def set_from_machine_components(_full, prefix, number, _checksum, _check)
@@ -148,7 +182,7 @@ module SBCF
 
     def human_barcode=(human_barcode)
       match = HUMAN_BARCODE_FORMAT.match(human_barcode)
-
+      return unless match
       if @checksum_required && match[:checksum].nil?
         raise ChecksumRequired, 'You must supply a complete barcode, including the final letter (eg. DN12345R).'
       end
@@ -159,19 +193,7 @@ module SBCF
     end
 
     def calculate_ean13(code)
-      calculate_ean(code)
-    end
-
-    def calculate_ean(code, initial_weight = 3)
-      # The EAN is calculated by adding each digit modulo 10 ten weighted by 1 or 3 ( in seq)
-      ean = 0
-      weight = initial_weight
-      while code > 0
-        code, c = code.divmod 10
-        ean += c * weight % 10
-        weight = weight == 1 ? 3 : 1
-      end
-      (10 - ean) % 10
+      Ean.calculate(code)
     end
 
     def calculate_checksum
