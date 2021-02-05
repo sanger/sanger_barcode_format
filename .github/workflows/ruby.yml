@@ -1,0 +1,59 @@
+name: Ruby
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test_and_coverage:
+
+    runs-on: ubuntu-latest
+    name: Ruby Test + Coverage
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0
+        bundler-cache: true # Runs bundle install and caches gems. See the ruby_test.yml
+                            # example if you need more control over bundler.
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID:  ${{ secrets.CC_TEST_REPORTER_ID || '8ab4bd7f459dfad8d238b1f8b42b8c6d73714ac5746d3e98c81d3e201869fe3b' }}
+      with:
+        coverageCommand: bundle exec rspec
+  # As we're a gem, lets check multiple ruby versions
+  legacy_test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: [ '2.5', '2.6', '2.7' ]
+    name: Ruby Test ${{ matrix.ruby }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true # Runs bundle install and caches gems. See the ruby_test.yml
+                            # example if you need more control over bundler.
+    - name: Run tests
+      run: bundle exec rspec
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0
+        bundler-cache: true # Runs bundle install and caches gems. See the ruby_test.yml
+                            # example if you need more control over bundler.
+    - name: Run lint
+      run: bundle exec rubocop
