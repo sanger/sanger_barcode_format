@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SBCF
   # These methods are all added to maintain compatibility with the
   # Existing sequencescape Barcode API. They will be deprecated over time.
@@ -29,7 +31,7 @@ module SBCF
       return nil if machine_barcode.nil?
 
       number = SBCF::SangerBarcode.from_machine(machine_barcode).number
-      number && number.to_s
+      number&.to_s
     end
 
     # Returns the human readable prefix from a machine barcode

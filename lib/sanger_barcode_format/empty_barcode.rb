@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SBCF
   #
   # SBCF::EmptyBarcode is a convenience matcher for when you are explicitly
@@ -9,7 +11,7 @@ module SBCF
   #
   class EmptyBarcode
     # String representation
-    STRING_REP = '[empty]'.freeze
+    STRING_REP = '[empty]'
     #
     # Returns true only if passed an empty string or nil
     # @param other [nil, String] User input to validate if its blank

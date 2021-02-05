@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SBCF
   # Subtracted from prefixes byte values during conversion to numbers
   # Results in A having a value of 1
@@ -22,11 +24,11 @@ module SBCF
 
   # Regex to match human readable barcodes eg. PR1234K
   # Matches 1: prefix, 2: number, 3: checksum/suffix (optional)
-  HUMAN_BARCODE_FORMAT = /\A(?<prefix>[A-Z]{2})(?<number>\d{1,7})(?<checksum>[A-Z]{0,1}\z)/
+  HUMAN_BARCODE_FORMAT = /\A(?<prefix>[A-Z]{2})(?<number>\d{1,7})(?<checksum>[A-Z]{0,1}\z)/.freeze
 
   # Regex to match the full ean13 barcode, including all checksums
   # The { 2,3 } prefix matcher ensures that any barcodes beginning
   # with zero are correctly parsed, even if the zero is stripped.
   # Matches 1: Prefix, 2: number 3: suffix 4: ean
-  MACHINE_BARCODE_FORMAT = /\A(\d{2,3})(\d{7})(\d{2})(\d{1})\z/
+  MACHINE_BARCODE_FORMAT = /\A(\d{2,3})(\d{7})(\d{2})(\d{1})\z/.freeze
 end

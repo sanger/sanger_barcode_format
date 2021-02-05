@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SBCF
   # Prefixes are found at the front of sanger_barcodable_spec
   # They have a two character human form, or a three digit machine form
@@ -81,7 +83,7 @@ module SBCF
 
     # Avoid needlessly creating an array
     def above_zero(value)
-      value < 0 ? 0 : value
+      value.negative? ? 0 : value
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SBCF
   # Provide class methods to assist with creation of barcodes from
   # Different formats
@@ -6,17 +8,28 @@ module SBCF
     # checksum_required = set to true to reject barcodes without a checksum
     # Raises InvalidBarcode if the format doesn't match
     # raises ChecksumRequired if the checksum is missing, yet checksum_required is true
-    def from_human(human_barcode, checksum_required = false)
+    #
+    # @param human_barcode [String] A string representing the human readable barcode
+    # @param checksum_required [Boolean] Set to true to enforce the presence of a checksum
+    #
+    # @return [SBCF::SangerBarcode] SangerBarcode representing the input string
+    #
+    def from_human(human_barcode, checksum_required: false)
       SangerBarcode.new(human_barcode: human_barcode, checksum_required: checksum_required)
     end
 
     # Provide a full 13 digit ean13 barcode and returns a SangerBarcode object
+    #
+    # @param machine_barcode [String] A string representing the ean13 formatted barcode
+    #
+    # @return [SBCF::SangerBarcode] SangerBarcode representing the input string
+    #
     def from_machine(machine_barcode)
       SangerBarcode.new(machine_barcode: machine_barcode)
     end
 
     #
-    # Generate an ABCF::SangerBarcode form a checksum and number
+    # Generate an SBCF::SangerBarcode form a checksum and number
     # @param human_prefix [String] Two character prefix eg. DN
     # @param short_barcode [String] The 1-7 digit barcode number
     #

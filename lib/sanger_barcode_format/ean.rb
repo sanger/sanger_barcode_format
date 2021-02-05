@@ -33,7 +33,7 @@ class Ean
     # The EAN is calculated by adding each digit modulo 10 ten weighted by 1 or 3 ( in seq)
     ean = 0
     weight = initial_weight
-    while code > 0
+    while code.positive?
       code, c = code.divmod 10
       ean += c * weight % 10
       weight = weight == 1 ? 3 : 1

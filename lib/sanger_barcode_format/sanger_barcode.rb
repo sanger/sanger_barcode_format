@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sanger_barcode_format/builders'
 
 module SBCF
@@ -24,8 +26,9 @@ module SBCF
   # checksum is included in the output of this gem and does not need to be
   # recalculated .
   class SangerBarcode
-    INVALID_STRING = '[invalid format]'.freeze
+    INVALID_STRING = '[invalid format]'
     attr_reader :prefix, :number
+
     extend Builders
     # rubocop:disable Metrics/ParameterLists
     # Create a new barcode object.
@@ -157,7 +160,7 @@ module SBCF
     def number=(number)
       raise ArgumentError, "Number : #{number} to big to generate a barcode." if number.to_s.size > 7
 
-      @number = number && number.to_i
+      @number = number&.to_i
     end
 
     def checksum=(checksum)
@@ -170,7 +173,7 @@ module SBCF
     # @param [String||Int] machine_barcode The 13 digit long ean13 barcode
     # @return [String||Int] Returns the input
     def machine_barcode=(machine_barcode)
-      @machine_barcode = machine_barcode && machine_barcode.to_i
+      @machine_barcode = machine_barcode&.to_i
       match = MACHINE_BARCODE_FORMAT.match(machine_barcode.to_s)
       match && set_from_machine_components(*match)
     end

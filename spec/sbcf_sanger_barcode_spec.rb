@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sanger_barcode_format'
 require 'spec_helper'
 
@@ -7,28 +9,36 @@ shared_examples_for 'a valid SangerBarcode instance' do
   it '#human_full returns the full human barcode' do
     expect(subject.human_barcode).to eq(human_full)
   end
+
   it '#machine_barcode returns the ean13 barcode' do
     expect(subject.machine_barcode).to eq(ean13)
   end
+
   it '#valid? is true' do
     expect(subject).to be_valid
   end
+
   it 'is equal to equivalent barcodes' do
     expect(subject).to eq(other_barcode)
   end
   # If you want to compare strings, use the match operators, or ~=
+
   it 'is not equal to human barcode strings' do
     expect(subject).not_to eq(human_full)
   end
+
   it 'is not equal to ean13 strings' do
     expect(subject).not_to eq(ean13)
   end
+
   it 'is =~ to equivalent barcodes' do
     expect(subject =~ other_barcode).to be true
   end
+
   it 'is =~ to human barcode string' do
     expect(subject =~ human_full).to be true
   end
+
   it 'is =~ to human ean13 strings' do
     expect(subject =~ ean13).to be true
   end
@@ -42,11 +52,11 @@ shared_examples_for 'an invalid SangerBarcode instance' do
   subject { SBCF::SangerBarcode }
 
   it 'is invalid from human' do
-    expect(subject.from_human(human_full)).to_not be_valid
+    expect(subject.from_human(human_full)).not_to be_valid
   end
 
-  it 'it is invalid from machine' do
-    expect(subject.from_machine(ean13)).to_not be_valid
+  it 'is invalid from machine' do
+    expect(subject.from_machine(ean13)).not_to be_valid
   end
 
   it 'converts to a string' do
@@ -62,11 +72,13 @@ shared_examples_for 'a modern barcode' do
 
     context 'with a full human barcode' do
       let(:input) { human_full }
+
       it_behaves_like 'a valid SangerBarcode instance'
     end
 
     context 'with a short human barcode' do
       let(:input) { human_short }
+
       it_behaves_like 'a valid SangerBarcode instance'
     end
   end
@@ -76,6 +88,7 @@ shared_examples_for 'a modern barcode' do
 
     context 'with an ean13' do
       let(:input) { ean13 }
+
       it_behaves_like 'a valid SangerBarcode instance'
     end
   end
@@ -85,24 +98,29 @@ shared_examples_for 'a modern barcode' do
 
     context 'with a full human barcode' do
       let(:input) { human_full }
+
       it_behaves_like 'a valid SangerBarcode instance'
     end
 
     context 'with a short human barcode' do
       let(:input) { human_short }
+
       it_behaves_like 'a valid SangerBarcode instance'
     end
 
     context 'with an ean13' do
       let(:input) { ean13 }
+
       it_behaves_like 'a valid SangerBarcode instance'
     end
   end
 
   describe '::from_prefix_and_number' do
     subject { described_class.from_prefix_and_number(*input) }
+
     context 'with a prefix and number' do
       let(:input) { [human_prefix, short_barcode] }
+
       it_behaves_like 'a valid SangerBarcode instance'
     end
   end
@@ -164,6 +182,7 @@ describe SBCF::SangerBarcode do
     let(:ean13) { 4500101234757 }
 
     let(:short_barcode) { 12345678 }
+
     it_behaves_like 'an invalid SangerBarcode instance'
   end
 
@@ -182,9 +201,11 @@ describe SBCF::SangerBarcode do
       it 'doesn\'t equal empty input' do
         expect(barcode_from_empty_input).not_to eq barcode_from_empty_input
       end
+
       it '=~ empty input' do
         expect(barcode_from_empty_input =~ empty_input).to be false
       end
+
       it "doesn't =~ invalid input" do
         expect(barcode_from_empty_input =~ invalid_input).to be false
       end
@@ -194,15 +215,14 @@ describe SBCF::SangerBarcode do
       it 'doesn\'t equal empty input' do
         expect(barcode_from_invalid_input).not_to eq barcode_from_empty_input
       end
+
       it 'doesn\'t =~ empty input' do
         expect(barcode_from_invalid_input =~ empty_input).to be false
       end
+
       it "doesn't =~ invalid input" do
         expect(barcode_from_invalid_input =~ invalid_input).to be false
       end
     end
   end
-end
-
-describe SBCF::SangerBarcode do
 end
