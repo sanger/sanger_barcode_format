@@ -1,7 +1,7 @@
 # SBCF
 
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](https://www.rubydoc.info/github/sanger/sanger_barcode_format)
-![Ruby](https://github.com/JamesGlover/sanger_barcode_format/workflows/Ruby/badge.svg)
+![Ruby](https://github.com/sanger/sanger_barcode_format/workflows/Ruby/badge.svg)
 
 :warning: This is an early version and may be unstable.
 
@@ -79,6 +79,7 @@ be used to extend existing interfaces.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+4. Update the changelog
+4. Commit your changes (`git commit -am 'Added some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
