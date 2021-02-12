@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sanger_barcode_format'
 require 'sanger_barcode_format/legacy_methods'
 require 'spec_helper'
@@ -55,9 +57,7 @@ end
 
 describe SBCF::LegacyMethods do
   subject do
-    module LegacyModule
-      extend SBCF::LegacyMethods
-    end
+    Module.new { extend SBCF::LegacyMethods }
   end
 
   context 'with valid parameters' do

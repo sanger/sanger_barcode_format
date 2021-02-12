@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SBCF
   ##
   # Checsum is an internally generated checksum used to validate

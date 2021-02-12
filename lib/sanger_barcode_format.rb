@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sanger_barcode_format/version'
 require 'sanger_barcode_format/constants'
 require 'sanger_barcode_format/exception_classes'

@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 require 'sanger_barcode_format'
 require 'spec_helper'
 
 describe SBCF::EmptyBarcode do
   subject { described_class.new }
+
   let(:empty_sanger_barcode) { SBCF::SangerBarcode.from_human('') }
 
   it 'does not invalid Sanger Barcodes, even if they were initialized with empty content' do
